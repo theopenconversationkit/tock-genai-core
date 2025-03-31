@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "tock_genai_core"
+name = "tock-genai-code"
 version = "0.1.0"
 description = ""
 authors = ["Baptiste Le Goff <baptiste.le-goff@arkea.com>"]
