@@ -1,0 +1,28 @@
+from typing import Optional
+
+from pydantic import BaseModel, Field
+
+from tock_genai_core.models.llm.provider import LLMProvider
+from tock_genai_core.models.security.security_type import RawSecretKey, SecretKey
+
+
+class BaseLLMSetting(BaseModel):
+    """
+    Base configuration settings for LLM API. This class defines the common settings used for
+    configuring LLM API from different providers.
+    """
+
+    provider: LLMProvider = Field(description="The Large Language Model provider.")
+    model: Optional[str] = Field(description="Model name.", default=None)
+    api_key: Optional[SecretKey] = Field(
+        description="The API key used to authenticate requests to the provider API.",
+        default=None,
+        examples=[RawSecretKey(value="145d-ff455g-e4r5gf")],
+    )
+    temperature: float = Field(
+        description="The temperature that controls the randomness of the text generated.",
+        examples=["0.1"],
+        default=0.5,
+        ge=0,
+        le=2,
+    )

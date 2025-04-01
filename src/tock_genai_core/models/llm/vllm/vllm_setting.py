@@ -1,0 +1,18 @@
+from typing import Any, Dict, Literal, Optional
+
+from pydantic import Field
+
+from tock_genai_core.models.llm.provider import LLMProvider
+from tock_genai_core.models.llm.setting import BaseLLMSetting
+
+
+class VllmSetting(BaseLLMSetting):
+    """
+    Configuration settings for the VLLM (Qwen) LLM integration.
+    This class defines the configuration required to connect to the VLLM API.
+    """
+
+    provider: Literal[LLMProvider.Vllm] = Field(description="The Large Language Model provider.")
+    api_base: str = Field(description="Base endpoint of Qwen/Vllm API.")
+    max_new_tokens: int = Field(description="Maximum length of the llm response.", default=256)
+    additional_model_kwargs: Optional[Dict[str, Any]] = Field(description="Additional arguments.", default={})

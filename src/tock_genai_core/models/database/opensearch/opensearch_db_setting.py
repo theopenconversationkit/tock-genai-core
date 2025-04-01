@@ -1,0 +1,20 @@
+from typing import Literal
+
+from pydantic import Field
+
+from tock_genai_core.models.database.provider import VectorDBProvider
+from tock_genai_core.models.database.setting import BaseVectorDBSetting
+from tock_genai_core.models.security.security_type import SecretKey
+
+
+class OpenSearchSetting(BaseVectorDBSetting):
+    """
+    Configuration settings for OpenSearch vector database.
+    This class defines the configuration for connecting to an OpenSearch vector database.
+    """
+
+    provider: Literal[VectorDBProvider.OpenSearch] = Field(description="The vector store used.")
+    username: SecretKey = Field(description="Database username.", default=None)
+    password: SecretKey = Field(description="Database password.", default=None)
+    use_ssl: bool = Field(description="Use an SSL connection or not.")
+    verify_certs: bool = Field(description="Verify certificates authenticity or not.")

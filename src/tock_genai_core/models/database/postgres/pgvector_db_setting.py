@@ -1,0 +1,22 @@
+from typing import Literal, Optional
+from pydantic import Field
+
+from tock_genai_core.models.database.provider import VectorDBProvider
+from tock_genai_core.models.database.setting import BaseVectorDBSetting
+from tock_genai_core.models.security.security_type import SecretKey
+
+
+class PGVectorSetting(BaseVectorDBSetting):
+    """
+    Configuration settings for PGVector vector database.
+    This class defines the configuration for connecting to a PGVector database.
+    """
+
+    provider: Literal[VectorDBProvider.PGVector] = Field(description="The vector store used.")
+    username: SecretKey = Field(description="Database username.", default=None)
+    password: SecretKey = Field(description="Database password.", default=None)
+    db_name: str = Field(description="Database name", default=None)
+    sslmode: Optional[str] = Field(
+        description="The SSL mode used in the connection with the database.", default="require"
+    )
+    namespace: str = Field(description="Name of the application in use")

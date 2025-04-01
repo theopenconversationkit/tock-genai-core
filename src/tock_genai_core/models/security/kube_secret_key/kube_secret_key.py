@@ -1,0 +1,24 @@
+from typing import Literal
+
+from pydantic import Field
+
+from tock_genai_core.models.security.secret_key import BaseSecretKey
+from tock_genai_core.models.security.secret_key_type import SecretKeyType
+
+
+class KubernetesSecretKey(BaseSecretKey):
+    """
+    A class for Kubernetes Secret Key.
+    Used to store the secret name managed in Kubernetes Secrets Manager.
+    """
+
+    type: Literal[SecretKeyType.KUBERNETES_SECRET] = Field(
+        description="The Secret Key type.",
+        examples=[SecretKeyType.KUBERNETES_SECRET],
+        default=SecretKeyType.KUBERNETES_SECRET,
+    )
+    secret_name: str = Field(
+        description="The secret name in Kubernetes.",
+        examples=["openaiapi_key"],
+        min_length=1,
+    )
