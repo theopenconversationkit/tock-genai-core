@@ -14,17 +14,3 @@ class VectorDBProvider(str, Enum):
     @classmethod
     def has_value(cls, value) -> bool:
         return value in cls._value2member_map_
-
-
-@unique
-class RelationalDBProvider(str, Enum):
-    """
-    Enum for relational database providers.
-    This class defines the available relational database providers.
-    """
-
-    PostgreSQL = "POSTGRESQL"
-
-    @classmethod
-    def has_value(cls, value) -> bool:
-        return value in cls._value2member_map_

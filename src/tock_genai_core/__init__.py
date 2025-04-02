@@ -5,15 +5,14 @@ Package pour l'orchestration d'application LLM
 from tock_genai_core.services.security.security_service import get_nested_value, fetch_secret_key_value
 
 from tock_genai_core.services.langchain.factory.compressor_factory import get_compressor_factory
-from tock_genai_core.services.langchain.factory.db_factory import get_relational_db_factory, get_vector_db_factory
+from tock_genai_core.services.langchain.factory.db_factory import get_vector_db_factory
 from tock_genai_core.services.langchain.factory.em_factory import get_em_factory
-from tock_genai_core.services.langchain.factory.factories import VectorDBFactory, RelationalDBFactory, LLMFactory, EMFactory, CompressorFactory, GuardrailFactory
+from tock_genai_core.services.langchain.factory.factories import VectorDBFactory, LLMFactory, EMFactory, CompressorFactory, GuardrailFactory
 from tock_genai_core.services.langchain.factory.guardrail_factory import get_guardrail_factory
 from tock_genai_core.services.langchain.factory.llm_factory import get_llm_factory
 from tock_genai_core.services.langchain.factory.contextual_compressor.bloomz_compressor_factory import BloomzCompressorFactory
 from tock_genai_core.services.langchain.factory.database.opensearch_factory import OpenSearchFactory
 from tock_genai_core.services.langchain.factory.database.pgvector_factory import PGVectorFactory
-from tock_genai_core.services.langchain.factory.database.postgres_factory import PostgresFactory
 from tock_genai_core.services.langchain.factory.embedding.bloomz_factory import BloomzFactory
 from tock_genai_core.services.langchain.factory.embedding.openai_factory import OpenAIEMFactory
 from tock_genai_core.services.langchain.factory.embedding.vllm_factory import VLLMEMFactory
@@ -32,8 +31,7 @@ from tock_genai_core.models.database.setting import BaseVectorDBSetting
 from tock_genai_core.models.database.types import DBSetting
 from tock_genai_core.models.database.metadata import MetadataFilter # j'ai un doute sur celle-là
 from tock_genai_core.models.database.opensearch.opensearch_db_setting import OpenSearchSetting
-from tock_genai_core.models.database.postgres.pgvector_db_setting import PGVectorSetting
-from tock_genai_core.models.database.postgres.postgres_db_setting import PostgresSetting
+from tock_genai_core.models.database.pgvector.pgvector_db_setting import PGVectorSetting
 
 from tock_genai_core.models.embedding.provider import EMProvider
 from tock_genai_core.models.embedding.setting import BaseEMSetting
@@ -68,11 +66,9 @@ __all__ = [
     "get_nested_value",
     "fetch_secret_key_value",
     "get_compressor_factory",
-    "get_relational_db_factory",
     "get_vector_db_factory",
     "get_em_factory",
     "VectorDBFactory",
-    "RelationalDBFactory",
     "LLMFactory",
     "EMFactory",
     "CompressorFactory",
@@ -82,7 +78,6 @@ __all__ = [
     "BloomzCompressorFactory",
     "OpenSearchFactory",
     "PGVectorFactory",
-    "PostgresFactory",
     "BloomzFactory",
     "OpenAIEMFactory",
     "VLLMEMFactory",
@@ -100,7 +95,6 @@ __all__ = [
     "MetadataFilter",
     "OpenSearchSetting",
     "PGVectorSetting",
-    "PostgresSetting",
     "EMProvider",
     "BaseEMSetting",
     "EMSetting",

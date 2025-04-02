@@ -14,7 +14,6 @@ from tock_genai_core.models.llm.setting import BaseLLMSetting
 from tock_genai_core.models.database import BaseVectorDBSetting
 from tock_genai_core.models.guardrail import BaseGuardrailSetting
 from tock_genai_core.models.contextual_compressor import BaseCompressorSetting
-from tock_genai_core.models.database.setting import BaseRelationalDBSetting
 
 
 class VectorDBFactory(ABC, BaseModel):
@@ -40,28 +39,6 @@ class VectorDBFactory(ABC, BaseModel):
 
     @abstractmethod
     def get_vector_store(self) -> VectorStore:
-        pass
-
-
-class RelationalDBFactory(ABC, BaseModel):
-    """
-    Abstract factory class for creating relational database instances.
-
-    Attributes
-    ----------
-    db_settings : BaseRelationalDBSetting
-        The settings used to configure the relational database.
-
-    Methods
-    -------
-    get_database() -> Engine
-        Abstract method to be implemented by subclasses to return an instance of a database engine.
-    """
-
-    db_settings: BaseRelationalDBSetting
-
-    @abstractmethod
-    def get_database(self) -> Engine:
         pass
 
 
