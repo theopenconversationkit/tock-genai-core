@@ -122,4 +122,3 @@ __all__ = [
 
 __version__ = '0.1.0'
 
-# créer 2-3 test factory
