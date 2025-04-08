@@ -8,34 +8,26 @@ packages = [{include = "tock_genai_core", from = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-alembic = "^1.15.1"
-fastapi = "^0.115.6"
 google-cloud-storage = "^3.1.0"
-httpx-auth-awssigv4 = "^0.1.4"
 langchain  =  "^0.3.14"
 langchain-community = "^0.3.14"
 langchain-openai = "^0.2.14"
 langchain-postgres = "^0.0.12"
 langfuse = "^2.60.2"
-openmock = "^3.1.2"
 opensearch-py = "^2.8.0"
 pandas = "^2.2.3"
-parameterized = "^0.9.0"
-pdfplumber = "^0.11.6"
-pikepdf = "^9.5.2"
-psycopg2-binary = "^2.9.10"
 pydantic-settings = "^2.7.1"
-pypdf = "^5.4.0"
-pytest-httpx = "^0.35.0"
 text-generation = "^0.7.0"
 tiktoken = "^0.8.0"
-transformers = "^4.50.2"
 uvicorn = "^0.34.0"
 
 [tool.poetry.dev-dependencies]
-pytest = "^8.3.4"
-requests-mock = "^1.11.0"
 httpx-auth-awssigv4 = "^0.1.4"
+openmock = "^3.1.2"
+parameterized = "^0.9.0"
+pytest = "^8.3.4"
+pytest-httpx = "^0.35.0"
+requests-mock = "^1.11.0"
 
 
 [build-system]

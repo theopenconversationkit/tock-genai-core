@@ -7,8 +7,6 @@ from langchain.base_language import BaseLanguageModel
 from langchain_core.output_parsers import BaseOutputParser
 from langchain.retrievers.document_compressors.base import BaseDocumentCompressor
 
-from sqlalchemy import Engine
-
 from tock_genai_core.models.embedding import BaseEMSetting
 from tock_genai_core.models.llm.setting import BaseLLMSetting
 from tock_genai_core.models.database import BaseVectorDBSetting
