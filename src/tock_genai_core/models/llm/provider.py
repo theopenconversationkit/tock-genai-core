@@ -9,7 +9,7 @@ class LLMProvider(str, Enum):
     """
 
     TGI = "HuggingFaceTextGenInference"
-    OpenAI = "OpenAI"
+    AzureOpenAI = "AzureOpenAI"
     Vllm = "Vllm"
 
     @classmethod

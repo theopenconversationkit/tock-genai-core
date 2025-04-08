@@ -1,7 +1,7 @@
 from langchain.embeddings.base import Embeddings
 from langchain_openai import AzureOpenAIEmbeddings
 
-from tock_genai_core.models.embedding import OpenAIEMSetting
+from tock_genai_core.models.embedding import AzureOpenAIEMSetting
 from tock_genai_core.services.langchain.factory.factories import EMFactory
 from tock_genai_core.services.security.security_service import fetch_secret_key_value
 
@@ -10,15 +10,15 @@ class OpenAIEMFactory(EMFactory):
     """
     Factory class for creating OpenAI Embedding model instances.
     This class is responsible for instantiating an `AzureOpenAIEmbeddings` object using the settings defined
-    in the `OpenAIEMSetting` class.
+    in the `AzureOpenAIEMSetting` class.
 
     Attributes
     ----------
-    settings : OpenAIEMSetting
+    settings : AzureOpenAIEMSetting
         The settings used to configure the AzureOpenAIEmbeddings model.
     """
 
-    settings: OpenAIEMSetting
+    settings: AzureOpenAIEMSetting
 
     def get_model(self) -> Embeddings:
         """

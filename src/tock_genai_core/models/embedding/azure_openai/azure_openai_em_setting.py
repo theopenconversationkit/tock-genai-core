@@ -1,0 +1,18 @@
+from typing import Literal
+
+from pydantic import Field
+
+from tock_genai_core.models.embedding.provider import EMProvider
+from tock_genai_core.models.embedding.setting import BaseEMSetting
+
+
+class AzureOpenAIEMSetting(BaseEMSetting):
+    """
+    Configuration settings for the AzureOpenAI embedding model.
+    This class defines the configuration required for using the AzureOpenAI embedding model.
+    """
+
+    provider: Literal[EMProvider.AzureOpenAI] = Field(description="The Embedding Model provider.", default=EMProvider.AzureOpenAI)
+    api_base: str = Field(description="Base endpoint of AzureOpenAI API.")
+    api_version: str = Field(description="AzureOpenAI API version.", examples=["2023-05-15"])
+    deployment: str = Field(description="Deployment name.")

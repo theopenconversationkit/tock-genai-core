@@ -12,7 +12,7 @@ class VllmSetting(BaseLLMSetting):
     This class defines the configuration required to connect to the VLLM API.
     """
 
-    provider: Literal[LLMProvider.Vllm] = Field(description="The Large Language Model provider.")
+    provider: Literal[LLMProvider.Vllm] = Field(description="The Large Language Model provider.", default=LLMProvider.Vllm)
     api_base: str = Field(description="Base endpoint of Qwen/Vllm API.")
     max_new_tokens: int = Field(description="Maximum length of the llm response.", default=256)
     additional_model_kwargs: Optional[Dict[str, Any]] = Field(description="Additional arguments.", default={})

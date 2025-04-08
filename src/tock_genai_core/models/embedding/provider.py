@@ -9,7 +9,7 @@ class EMProvider(str, Enum):
     """
 
     BloomZ = "BloomzEmbeddings"
-    OpenAI = "OpenAI"
+    AzureOpenAI = "AzureOpenAI"
     Vllm = "Vllm"
 
     @classmethod

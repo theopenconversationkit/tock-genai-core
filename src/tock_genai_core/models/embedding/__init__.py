@@ -3,4 +3,5 @@ from .setting import BaseEMSetting
 from .types import EMSetting
 
 from .bloomz.bloomz_em_setting import BloomZEMSetting
-from .openai.openai_em_setting import OpenAIEMSetting
+from .azure_openai.azure_openai_em_setting import AzureOpenAIEMSetting
+from .vllm.vllm_em_setting import VLLMEMSetting

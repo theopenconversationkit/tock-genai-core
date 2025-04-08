@@ -6,7 +6,6 @@ Generative AI main and core components : models, factories, associated error man
 ## Architecture
 
 Le projet est structuré en trois composants principaux :
-This project is composed of 3 main components : 
 
 - **Models** : Contient les définitions des classes et modèles de données utilisés dans l'application
 - **Services/Factories** : Regroupe la logique métier et les fonctions utilisées par les routes
@@ -196,8 +195,6 @@ This project is composed of 3 main components :
         additional_model_kwargs: Optional[Dict[str, Any]]
     ```
 
-
-
 ## Fonctionnement
 
 Chaque outil utilisé (database, embedding, llm, langfuse, ...) a besoin d'un certains nombre de paramètres qui sont référencés dans les models (classes de settings)
@@ -205,9 +202,7 @@ Chaque outil utilisé (database, embedding, llm, langfuse, ...) a besoin d'un ce
 Ces classes sont ensuite héritées par des services ou des factories afin de pouvoir répondre au besoin.
 
 
-Example of `get_vector_db_factory` that creates a vector store factory based on the application name and embeddings settings provided
-
-
+Exemple de `get_vector_db_factory` qui crée une factory de base vectorielle basée sur le nom de l'application et les paramètres d'embedding fournis
 
 ```python
 from tock-genai-core import get_vector_db_factory
@@ -248,26 +243,3 @@ def function_name(db_settings: DBSetting, em_settings: EMSetting):
 
     # do somethings
 ```
-
-<!-- **🔍 Explications**
-
-La classe `PGVectorSetting` va hériter de la classe `BaseVectorDBSetting`. Chacune d'entre elles vont avoir besoin de variables: 
-
-__*BaseVectorDBSetting*__
-
-- index
-- provider
-- db_url
-
-
-__*PGVectorSetting*__
-
-- provider
-- usename
-- password
-- db_name
-- sslmode
-- namespace -->
-
-
-

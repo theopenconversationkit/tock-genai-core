@@ -1,7 +1,7 @@
 from langchain.base_language import BaseLanguageModel
 from langchain_openai.chat_models import AzureChatOpenAI
 
-from tock_genai_core.models.llm import OpenAILLMSetting
+from tock_genai_core.models.llm import AzureOpenAILLMSetting
 from tock_genai_core.services.langchain.factory.factories import LLMFactory
 from tock_genai_core.services.security.security_service import fetch_secret_key_value
 
@@ -18,7 +18,7 @@ class OpenAILLMFactory(LLMFactory):
         The settings used to configure the `AzureChatOpenAI` model.
     """
 
-    settings: OpenAILLMSetting
+    settings: AzureOpenAILLMSetting
 
     def get_model(self) -> BaseLanguageModel:
         """

@@ -1,0 +1,1 @@
+from .opensearch import get_db_client
