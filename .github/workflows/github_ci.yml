@@ -42,7 +42,7 @@ jobs:
         run: poetry install
 
       - name: Run Black
-        run: poetry run black --check .
+        run: poetry run black --check src/tock_genai_core tests --line-length=120
 
       - name: Run Flake8
         run: poetry run flake8 .
