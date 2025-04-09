@@ -1,3 +1,16 @@
+# -*- coding: utf-8 -*-
+"""
+PGVectorSetting
+
+Configuration settings for PGVector vector database.
+This class defines the configuration for connecting to a PGVector database.
+
+Authors:
+    * Baptiste Le Goff: baptiste.le-goff@arkea.com
+    * Killian Mahé: killian.mahe@partnre.com
+    * Luigi Bokalli: luigi.bokalli@partnre.com
+    * Noé Chabanon: noe.chabanon@partnre.com
+"""
 from typing import Literal, Optional
 from pydantic import Field
 

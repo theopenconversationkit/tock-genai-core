@@ -1,3 +1,16 @@
+# -*- coding: utf-8 -*-
+"""
+BaseLLMSetting
+
+Base configuration settings for LLM API. This class defines the common settings used for
+configuring LLM API from different providers.
+
+Authors:
+    * Baptiste Le Goff: baptiste.le-goff@arkea.com
+    * Killian Mahé: killian.mahe@partnre.com
+    * Luigi Bokalli: luigi.bokalli@partnre.com
+    * Noé Chabanon: noe.chabanon@partnre.com
+"""
 from typing import Optional
 
 from pydantic import BaseModel, Field

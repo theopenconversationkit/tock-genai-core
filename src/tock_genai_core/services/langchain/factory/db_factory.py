@@ -24,7 +24,7 @@ def get_vector_db_factory(db_settings: DBSetting, em_settings: BaseEMSetting) ->
             db_settings=db_settings,
             em_settings=em_settings,
         )
-    elif db_settings.provider == VectorDBProvider.PGVector:
+    if db_settings.provider == VectorDBProvider.PGVector:
         return PGVectorFactory(
             db_settings=db_settings,
             em_settings=em_settings,

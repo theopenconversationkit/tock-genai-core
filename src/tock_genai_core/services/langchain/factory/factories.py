@@ -1,10 +1,10 @@
 from abc import ABC, abstractmethod
 
 from pydantic import BaseModel
-from langchain.embeddings.base import Embeddings
+from langchain_core.output_parsers import BaseOutputParser
 from langchain_core.vectorstores import VectorStore
 from langchain.base_language import BaseLanguageModel
-from langchain_core.output_parsers import BaseOutputParser
+from langchain.embeddings.base import Embeddings
 from langchain.retrievers.document_compressors.base import BaseDocumentCompressor
 
 from tock_genai_core.models.embedding import BaseEMSetting

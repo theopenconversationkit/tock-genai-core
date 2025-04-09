@@ -1,0 +1,6 @@
+[DESIGN]
+max-args=7
+max-positional-arguments=7
+
+[MESSAGES CONTROL]
+disable=no-member

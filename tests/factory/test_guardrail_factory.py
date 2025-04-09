@@ -10,6 +10,7 @@ from tock_genai_core.models.guardrail import GuardrailProvider, BloomZGuardrailS
     [(BloomZGuardrailSetting(provider=GuardrailProvider.BloomZ, api_base="http://api.com"), BloomzGuardrailFactory)],
 )
 def test_get_guardrail_factory(settings, expected_output):
+    """Test for get_guardrail_factory function"""
 
     factory = get_guardrail_factory(settings)
 

@@ -20,6 +20,7 @@ from tock_genai_core.models.embedding import BloomZEMSetting, AzureOpenAIEMSetti
     ],
 )
 def test_get_em_factory(settings, expected_output):
+    """Test for get_em_factory function"""
 
     factory = get_em_factory(settings)
 

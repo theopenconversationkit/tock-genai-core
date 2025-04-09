@@ -1,3 +1,16 @@
+# -*- coding: utf-8 -*-
+"""
+BloomZEMSetting
+
+Configuration settings for the BloomZ embedding model.
+This class defines the configuration required for using the BloomZ embedding model.
+
+Authors:
+    * Baptiste Le Goff: baptiste.le-goff@arkea.com
+    * Killian Mahé: killian.mahe@partnre.com
+    * Luigi Bokalli: luigi.bokalli@partnre.com
+    * Noé Chabanon: noe.chabanon@partnre.com
+"""
 from typing import Literal
 
 from pydantic import Field

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from .provider import EMProvider
 from .setting import BaseEMSetting
 from .types import EMSetting

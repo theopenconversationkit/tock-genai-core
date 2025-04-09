@@ -1,3 +1,16 @@
+# -*- coding: utf-8 -*-
+"""
+VllmSetting
+
+Configuration settings for the VLLM (Qwen) LLM integration.
+This class defines the configuration required to connect to the VLLM API.
+
+Authors:
+    * Baptiste Le Goff: baptiste.le-goff@arkea.com
+    * Killian Mahé: killian.mahe@partnre.com
+    * Luigi Bokalli: luigi.bokalli@partnre.com
+    * Noé Chabanon: noe.chabanon@partnre.com
+"""
 from typing import Any, Dict, Literal, Optional
 
 from pydantic import Field

@@ -1,3 +1,16 @@
+# -*- coding: utf-8 -*-
+"""
+BaseVectorDBSetting
+
+Base class for settings related to vector database configurations. This class holds the basic configuration
+parameters for a vector database.
+
+Authors:
+    * Baptiste Le Goff: baptiste.le-goff@arkea.com
+    * Killian Mahé: killian.mahe@partnre.com
+    * Luigi Bokalli: luigi.bokalli@partnre.com
+    * Noé Chabanon: noe.chabanon@partnre.com
+"""
 from typing import Optional
 
 from pydantic import BaseModel, Field

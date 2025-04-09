@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from .provider import VectorDBProvider
 from .setting import BaseVectorDBSetting
 from .types import DBSetting

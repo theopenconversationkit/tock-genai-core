@@ -1,3 +1,16 @@
+# -*- coding: utf-8 -*-
+"""
+AzureOpenAILLMSetting
+
+Configuration settings for AzureOpenAI LLM integration.
+This class defines the configuration required to connect to the AzureOpenAI API
+
+Authors:
+    * Baptiste Le Goff: baptiste.le-goff@arkea.com
+    * Killian Mahé: killian.mahe@partnre.com
+    * Luigi Bokalli: luigi.bokalli@partnre.com
+    * Noé Chabanon: noe.chabanon@partnre.com
+"""
 from typing import Literal
 
 from pydantic import Field

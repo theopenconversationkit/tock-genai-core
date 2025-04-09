@@ -69,7 +69,7 @@ class BloomzEmbeddings(BaseModel, Embeddings):
         )
         if response.status_code != 200:
             logger.exception(
-                f"Embedding request didn't return expected status code {response.content} on chunk {texts}."
+                "Embedding request didn't return expected status code %s on chunk %s.", response.content, texts
             )
         return response.json()["embedding"]
 

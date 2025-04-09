@@ -45,6 +45,7 @@ from tock_genai_core.services.langchain.factory.llm import TGIFactory, VllmFacto
     ],
 )
 def test_get_llm_factory(settings, expected_output):
+    """Test for get_llm_factory function"""
 
     factory = get_llm_factory(settings)
 

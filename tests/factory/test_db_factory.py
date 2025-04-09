@@ -22,6 +22,7 @@ from tock_genai_core.services.langchain.factory.database import OpenSearchFactor
     ],
 )
 def test_get_vector_db_factory(db_settings, expected_output):
+    """Test for get_vector_db_factory function"""
 
     em_settings = BloomZEMSetting(provider=EMProvider.BloomZ, api_base="http://bloomz", pooling="")
 

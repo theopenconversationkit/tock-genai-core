@@ -20,7 +20,8 @@ class GuardrailOutput(BaseModel):
         A flag indicating whether the generated content is considered toxic. Defaults to `False`.
 
     output_toxicity_reason : list[str], optional
-        A list of reasons explaining why the generated content is considered toxic, if applicable. Defaults to an empty list.
+        A list of reasons explaining why the generated content is considered toxic, if applicable. Defaults to an empty
+        list.
     """
 
     content: str

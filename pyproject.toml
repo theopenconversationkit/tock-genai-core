@@ -21,7 +21,7 @@ text-generation = "^0.7.0"
 tiktoken = "^0.8.0"
 uvicorn = "^0.34.0"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 pylint = "^3.3.6"
 black = "^25.1.0"
 flake8 = "^7.2.0"

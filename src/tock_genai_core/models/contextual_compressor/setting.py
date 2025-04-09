@@ -1,5 +1,19 @@
-from pydantic import BaseModel, Field
+# -*- coding: utf-8 -*-
+"""
+BaseCompressorSetting
+
+Base class for compressor settings.
+This class serves as a base for defining configuration settings for different contextual compressor providers.
+
+Authors:
+    * Baptiste Le Goff: baptiste.le-goff@arkea.com
+    * Killian Mahé: killian.mahe@partnre.com
+    * Luigi Bokalli: luigi.bokalli@partnre.com
+    * Noé Chabanon: noe.chabanon@partnre.com
+"""
 from typing import Optional
+
+from pydantic import BaseModel, Field
 
 from tock_genai_core.models.contextual_compressor.provider import (
     ContextualCompressorProvider,

@@ -49,7 +49,7 @@ jobs:
 
       - name: Run Pylint
         run: |
-          find . -name "*.py" | xargs poetry run pylint
+          find . -name "*.py" | xargs poetry run pylint --max-line-length=120
 
       - name: Run Tests
         run: poetry run pytest

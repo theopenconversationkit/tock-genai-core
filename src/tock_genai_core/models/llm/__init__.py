@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from .provider import LLMProvider
 from .setting import BaseLLMSetting
 from .types import LLMSetting

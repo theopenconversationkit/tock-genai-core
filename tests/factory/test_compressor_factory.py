@@ -17,7 +17,7 @@ from tock_genai_core.services.langchain.factory.contextual_compressor import Blo
     ],
 )
 def test_get_compressor_factory(settings, expected_output):
-
+    """Test for get_compressor_factory function"""
     factory = get_compressor_factory(settings)
 
     assert expected_output == type(factory)

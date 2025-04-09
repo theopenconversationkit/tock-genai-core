@@ -1,3 +1,16 @@
+# -*- coding: utf-8 -*-
+"""
+HuggingFaceTextGenInferenceLLMSetting
+
+Configuration settings for Hugging Face Text Generation Inference LLM integration.
+This class defines the configuration required to connect to the Hugging Face Text Generation Inference API.
+
+Authors:
+    * Baptiste Le Goff: baptiste.le-goff@arkea.com
+    * Killian Mahé: killian.mahe@partnre.com
+    * Luigi Bokalli: luigi.bokalli@partnre.com
+    * Noé Chabanon: noe.chabanon@partnre.com
+"""
 from typing import Literal
 
 from pydantic import Field

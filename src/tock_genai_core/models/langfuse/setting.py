@@ -1,3 +1,16 @@
+# -*- coding: utf-8 -*-
+"""
+LangfuseSetting
+
+Configuration settings for Langfuse integration.
+This class defines the configuration required to connect to Langfuse.
+
+Authors:
+    * Baptiste Le Goff: baptiste.le-goff@arkea.com
+    * Killian Mahé: killian.mahe@partnre.com
+    * Luigi Bokalli: luigi.bokalli@partnre.com
+    * Noé Chabanon: noe.chabanon@partnre.com
+"""
 from typing import Optional
 
 from pydantic import BaseModel, Field

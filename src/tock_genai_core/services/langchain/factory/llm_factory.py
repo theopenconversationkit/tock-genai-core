@@ -23,7 +23,7 @@ def get_llm_factory(settings: BaseLLMSetting) -> LLMFactory:
     """
     if settings.provider == LLMProvider.TGI:
         return TGIFactory(settings=settings)
-    elif settings.provider == LLMProvider.AzureOpenAI:
+    if settings.provider == LLMProvider.AzureOpenAI:
         return AzureOpenAILLMFactory(settings=settings)
-    elif settings.provider == LLMProvider.Vllm:
+    if settings.provider == LLMProvider.Vllm:
         return VllmFactory(settings=settings)

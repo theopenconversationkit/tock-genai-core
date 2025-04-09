@@ -1,5 +1,3 @@
-"""
-Package pour l'orchestration d'application LLM
-"""
+# -*- coding: utf-8 -*-
 
 __version__ = "0.1.0"

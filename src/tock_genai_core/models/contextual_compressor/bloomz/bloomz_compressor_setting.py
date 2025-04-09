@@ -1,3 +1,16 @@
+# -*- coding: utf-8 -*-
+"""
+BloomZCompressorSetting
+
+Configuration settings for OpenSearch vector database.
+This class defines the configuration for connecting to an OpenSearch vector database.
+
+Authors:
+    * Baptiste Le Goff: baptiste.le-goff@arkea.com
+    * Killian Mahé: killian.mahe@partnre.com
+    * Luigi Bokalli: luigi.bokalli@partnre.com
+    * Noé Chabanon: noe.chabanon@partnre.com
+"""
 from typing import Literal, Optional
 
 from pydantic import Field

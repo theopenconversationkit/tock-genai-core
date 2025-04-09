@@ -1,3 +1,16 @@
+# -*- coding: utf-8 -*-
+"""
+BaseEMSetting
+
+Base configuration settings for embedding models. This class defines the common settings used for
+configuring embedding models from different providers.
+
+Authors:
+    * Baptiste Le Goff: baptiste.le-goff@arkea.com
+    * Killian Mahé: killian.mahe@partnre.com
+    * Luigi Bokalli: luigi.bokalli@partnre.com
+    * Noé Chabanon: noe.chabanon@partnre.com
+"""
 from typing import Optional
 
 from pydantic import BaseModel, Field

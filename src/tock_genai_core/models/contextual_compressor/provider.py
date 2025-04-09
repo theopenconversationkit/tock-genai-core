@@ -1,3 +1,16 @@
+# -*- coding: utf-8 -*-
+"""
+ContextualCompressorProvider
+
+Enum for contextual compressor providers.
+This class defines available providers for contextual compression.
+
+Authors:
+    * Baptiste Le Goff: baptiste.le-goff@arkea.com
+    * Killian Mahé: killian.mahe@partnre.com
+    * Luigi Bokalli: luigi.bokalli@partnre.com
+    * Noé Chabanon: noe.chabanon@partnre.com
+"""
 from enum import Enum, unique
 
 

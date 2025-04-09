@@ -1,3 +1,16 @@
+# -*- coding: utf-8 -*-
+"""
+RawSecretKey
+
+A class for Raw Secret Key.
+Used to store a secret in its raw form.
+
+Authors:
+    * Baptiste Le Goff: baptiste.le-goff@arkea.com
+    * Killian Mahé: killian.mahe@partnre.com
+    * Luigi Bokalli: luigi.bokalli@partnre.com
+    * Noé Chabanon: noe.chabanon@partnre.com
+"""
 from typing import Literal
 
 from pydantic import Field

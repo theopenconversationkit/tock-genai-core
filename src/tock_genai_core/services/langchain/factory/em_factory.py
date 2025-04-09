@@ -19,7 +19,7 @@ def get_em_factory(settings: BaseEMSetting) -> EMFactory:
     """
     if settings.provider == EMProvider.BloomZ:
         return BloomzFactory(settings=settings)
-    elif settings.provider == EMProvider.AzureOpenAI:
+    if settings.provider == EMProvider.AzureOpenAI:
         return AzureOpenAIEMFactory(settings=settings)
-    elif settings.provider == EMProvider.Vllm:
+    if settings.provider == EMProvider.Vllm:
         return VLLMEMFactory(settings=settings)

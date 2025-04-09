@@ -1,3 +1,16 @@
+# -*- coding: utf-8 -*-
+"""
+AwsSecretKey
+
+A class for AWS Secret Key.
+Used to store the secret name managed in AWS Secrets Manager.
+
+Authors:
+    * Baptiste Le Goff: baptiste.le-goff@arkea.com
+    * Killian Mahé: killian.mahe@partnre.com
+    * Luigi Bokalli: luigi.bokalli@partnre.com
+    * Noé Chabanon: noe.chabanon@partnre.com
+"""
 from typing import Literal
 
 from pydantic import Field
