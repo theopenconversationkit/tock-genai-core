@@ -7,7 +7,7 @@ readme = "README.md"
 packages = [{include = "tock_genai_core", from = "src"}]
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.9"
 google-cloud-storage = "^3.1.0"
 langchain  =  "^0.3.14"
 langchain-community = "^0.3.14"
@@ -22,12 +22,18 @@ tiktoken = "^0.8.0"
 uvicorn = "^0.34.0"
 
 [tool.poetry.dev-dependencies]
+pylint = "^3.3.6"
+black = "^25.1.0"
+flake8 = "^7.2.0"
+
 httpx-auth-awssigv4 = "^0.1.4"
 openmock = "^3.1.2"
 parameterized = "^0.9.0"
+requests-mock = "^1.11.0"
+
+[tool.poetry.group.test.dependencies]
 pytest = "^8.3.4"
 pytest-httpx = "^0.35.0"
-requests-mock = "^1.11.0"
 
 
 [build-system]

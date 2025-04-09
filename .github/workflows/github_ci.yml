@@ -1,0 +1,95 @@
+name: CI/CD with Poetry
+
+on:
+  push:
+    branches: 
+      - "*"
+    tags:
+      - 'v*.*.*'  # CD déclenchée sur push taggé
+  pull_request:
+    branches: [ "develop", "main" ]
+  
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Run Tests & Linters
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }} # voir pour ajouter plusieurs versions
+
+      - name: Install dependencies
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      - name: Configure Poetry (no virtualenv)
+        run: poetry config virtualenvs.create false
+
+      - name: Install dependencies
+        run: poetry install
+
+      - name: Run Black
+        run: poetry run black --check .
+
+      - name: Run Flake8
+        run: poetry run flake8 .
+
+      - name: Run Pylint
+        run: |
+          find . -name "*.py" | xargs poetry run pylint
+
+      - name: Run Tests
+        run: poetry run pytest
+
+  # deploy:
+  #   name: Publish to PyPI
+  #   if: startsWith(github.ref, 'refs/tags/')
+  #   needs: build
+  #   runs-on: ubuntu-latest
+
+  #   strategy:
+  #     matrix:
+  #       python-version: ["3.9", "3.10", "3.11", "3.12"]
+
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3
+
+  #     - name: Set up Python
+  #       uses: actions/setup-python@v5
+  #       with:
+  #         python-version: ${{ matrix.python-version }}
+
+  #     - name: Install Poetry
+  #       run: |
+  #         curl -sSL https://install.python-poetry.org | python3 -
+  #         echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+  #     - name: Configure Poetry (no virtualenv)
+  #       run: poetry config virtualenvs.create false
+
+  #     - name: Install dependencies
+  #       run: poetry install --no-root
+
+  #     - name: Build the package
+  #       run: poetry build
+
+  #     - name: Publish to PyPI
+
+  #       env:
+  #         TOCK_PYPI_API_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
+  #       run: poetry publish --no-interaction --username __token__ --password $TOCK_PYPI_API_TOKEN
+
