@@ -13,7 +13,9 @@ class OpenSearchSetting(BaseVectorDBSetting):
     This class defines the configuration for connecting to an OpenSearch vector database.
     """
 
-    provider: Literal[VectorDBProvider.OpenSearch] = Field(description="The vector store used.", default=VectorDBProvider.OpenSearch)
+    provider: Literal[VectorDBProvider.OpenSearch] = Field(
+        description="The vector store used.", default=VectorDBProvider.OpenSearch
+    )
     username: SecretKey = Field(description="Database username.", default=None)
     password: SecretKey = Field(description="Database password.", default=None)
     use_ssl: bool = Field(description="Use an SSL connection or not.")

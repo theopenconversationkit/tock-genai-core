@@ -12,7 +12,9 @@ class AzureOpenAILLMSetting(BaseLLMSetting):
     This class defines the configuration required to connect to the AzureOpenAI API
     """
 
-    provider: Literal[LLMProvider.AzureOpenAI] = Field(description="The Large Language Model provider.", default=LLMProvider.AzureOpenAI)
+    provider: Literal[LLMProvider.AzureOpenAI] = Field(
+        description="The Large Language Model provider.", default=LLMProvider.AzureOpenAI
+    )
     api_base: str = Field(description="Base endpoint of AzureOpenAI API.")
     api_version: str = Field(description="AzureOpenAI API version.", examples=["2023-05-15"])
     deployment: str = Field(description="Deployment name.")

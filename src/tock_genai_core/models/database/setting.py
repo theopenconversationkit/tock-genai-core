@@ -14,4 +14,3 @@ class BaseVectorDBSetting(BaseModel):
     index: Optional[str] = Field(description="Index name", default=None)
     provider: VectorDBProvider = Field(description="The vector store used.")
     db_url: str = Field(description="The URL of the database.")
-

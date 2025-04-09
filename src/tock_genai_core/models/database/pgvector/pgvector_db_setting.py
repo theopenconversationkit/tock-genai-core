@@ -12,7 +12,9 @@ class PGVectorSetting(BaseVectorDBSetting):
     This class defines the configuration for connecting to a PGVector database.
     """
 
-    provider: Literal[VectorDBProvider.PGVector] = Field(description="The vector store used.", default=VectorDBProvider.PGVector)
+    provider: Literal[VectorDBProvider.PGVector] = Field(
+        description="The vector store used.", default=VectorDBProvider.PGVector
+    )
     username: SecretKey = Field(description="Database username.", default=None)
     password: SecretKey = Field(description="Database password.", default=None)
     db_name: str = Field(description="Database name", default=None)

@@ -12,7 +12,9 @@ class AzureOpenAIEMSetting(BaseEMSetting):
     This class defines the configuration required for using the AzureOpenAI embedding model.
     """
 
-    provider: Literal[EMProvider.AzureOpenAI] = Field(description="The Embedding Model provider.", default=EMProvider.AzureOpenAI)
+    provider: Literal[EMProvider.AzureOpenAI] = Field(
+        description="The Embedding Model provider.", default=EMProvider.AzureOpenAI
+    )
     api_base: str = Field(description="Base endpoint of AzureOpenAI API.")
     api_version: str = Field(description="AzureOpenAI API version.", examples=["2023-05-15"])
     deployment: str = Field(description="Deployment name.")

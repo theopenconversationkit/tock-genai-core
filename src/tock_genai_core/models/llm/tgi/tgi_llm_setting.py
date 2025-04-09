@@ -12,7 +12,9 @@ class HuggingFaceTextGenInferenceLLMSetting(BaseLLMSetting):
     This class defines the configuration required to connect to the Hugging Face Text Generation Inference API.
     """
 
-    provider: Literal[LLMProvider.TGI] = Field(description="The Large Language Model provider.", default=LLMProvider.TGI)
+    provider: Literal[LLMProvider.TGI] = Field(
+        description="The Large Language Model provider.", default=LLMProvider.TGI
+    )
     repetition_penalty: float = Field(description="Penalty on model repetition.", default=1.0)
     max_new_tokens: int = Field(description="Maximum length of the llm response.", default=256)
     api_base: str = Field(description="TGI API base URL.")

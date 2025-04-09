@@ -14,7 +14,9 @@ class BloomZCompressorSetting(BaseCompressorSetting):
     This class defines the configuration for connecting to an OpenSearch vector database.
     """
 
-    provider: Literal[ContextualCompressorProvider.BloomZ] = Field(description="The contextual compressor provider.", default=ContextualCompressorProvider.BloomZ)
+    provider: Literal[ContextualCompressorProvider.BloomZ] = Field(
+        description="The contextual compressor provider.", default=ContextualCompressorProvider.BloomZ
+    )
     min_score: float = Field(description="Minimum retailment score.")
     max_documents: Optional[int] = Field(
         description="Maximum number of documents to return to avoid exceeding max tokens for text generation.",

@@ -12,4 +12,6 @@ class BloomZGuardrailSetting(BaseGuardrailSetting):
     This class defines the configuration required for using the BloomZ guardrail model.
     """
 
-    provider: Literal[GuardrailProvider.BloomZ] = Field(description="The guardrail model provider.", default=GuardrailProvider.BloomZ)
+    provider: Literal[GuardrailProvider.BloomZ] = Field(
+        description="The guardrail model provider.", default=GuardrailProvider.BloomZ
+    )
