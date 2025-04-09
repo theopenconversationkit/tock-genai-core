@@ -1,22 +1,16 @@
 import pytest
 
-from tock_genai_core import (
-    get_em_factory,
-    EMProvider,
-    BloomzFactory,
-    OpenAIEMFactory,
-    VLLMEMFactory,
-    BloomZEMSetting,
-    OpenAIEMSetting,
-    VLLMEMSetting
-)
+from tock_genai_core.models.embedding import EMProvider
+from tock_genai_core.services.langchain.factory import get_em_factory
+from tock_genai_core.services.langchain.factory.embedding import BloomzFactory, AzureOpenAIEMFactory, VLLMEMFactory
+from tock_genai_core.models.embedding import BloomZEMSetting, AzureOpenAIEMSetting, VLLMEMSetting
 
 
 @pytest.mark.parametrize("settings,  expected_output", [
     (BloomZEMSetting(provider= EMProvider.BloomZ, api_base="http://api.com"), 
      BloomzFactory),
-    (OpenAIEMSetting(provider=EMProvider.OpenAI, api_base="http://api.com", api_version="1.0.0", deployment="deployment"), 
-     OpenAIEMFactory),
+    (AzureOpenAIEMSetting(provider=EMProvider.AzureOpenAI, api_base="http://api.com", api_version="1.0.0", deployment="deployment"), 
+     AzureOpenAIEMFactory),
     (VLLMEMSetting(provider=EMProvider.Vllm, api_base="http://api.com", model="model"), 
      VLLMEMFactory)
 ])

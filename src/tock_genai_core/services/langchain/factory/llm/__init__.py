@@ -1,3 +1,3 @@
 from .tgi_factory import TGIFactory
-from .openai_factory import OpenAILLMFactory
+from .azure_openai_factory import AzureOpenAILLMFactory
 from .vllm_factory import VllmFactory

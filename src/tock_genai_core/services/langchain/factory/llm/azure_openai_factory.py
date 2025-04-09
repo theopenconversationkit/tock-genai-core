@@ -6,7 +6,7 @@ from tock_genai_core.services.langchain.factory.factories import LLMFactory
 from tock_genai_core.services.security.security_service import fetch_secret_key_value
 
 
-class OpenAILLMFactory(LLMFactory):
+class AzureOpenAILLMFactory(LLMFactory):
     """
     Factory class for creating OpenAI language models.
     This class is responsible for instantiating an `AzureChatOpenAI` object using the settings defined in the

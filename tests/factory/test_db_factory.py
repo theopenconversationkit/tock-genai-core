@@ -1,15 +1,10 @@
 import pytest
 
-from tock_genai_core import (
-    OpenSearchFactory, 
-    PGVectorFactory, 
-    OpenSearchSetting,
-    PGVectorSetting,
-    BloomZEMSetting, 
-    EMProvider,
-    VectorDBProvider,
-    get_vector_db_factory
-)
+from tock_genai_core.models.database import PGVectorSetting, OpenSearchSetting, VectorDBProvider
+from tock_genai_core.models.embedding import BloomZEMSetting, EMProvider
+from tock_genai_core.services.langchain.factory import get_vector_db_factory
+from tock_genai_core.services.langchain.factory.database import OpenSearchFactory, PGVectorFactory
+
 
 
 @pytest.mark.parametrize("db_settings,  expected_output", [

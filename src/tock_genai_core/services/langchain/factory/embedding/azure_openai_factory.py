@@ -6,9 +6,9 @@ from tock_genai_core.services.langchain.factory.factories import EMFactory
 from tock_genai_core.services.security.security_service import fetch_secret_key_value
 
 
-class OpenAIEMFactory(EMFactory):
+class AzureOpenAIEMFactory(EMFactory):
     """
-    Factory class for creating OpenAI Embedding model instances.
+    Factory class for creating AzureOpenAI Embedding model instances.
     This class is responsible for instantiating an `AzureOpenAIEmbeddings` object using the settings defined
     in the `AzureOpenAIEMSetting` class.
 

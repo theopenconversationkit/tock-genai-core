@@ -1,3 +1,3 @@
 from .bloomz_factory import BloomzFactory
-from .openai_factory import OpenAIEMFactory
+from .azure_openai_factory import AzureOpenAIEMFactory
 from .vllm_factory import VLLMEMFactory

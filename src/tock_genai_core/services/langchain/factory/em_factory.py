@@ -1,6 +1,6 @@
 from tock_genai_core.models.embedding import BaseEMSetting, EMProvider
 from tock_genai_core.services.langchain.factory.factories import EMFactory
-from tock_genai_core.services.langchain.factory.embedding import BloomzFactory, OpenAIEMFactory, VLLMEMFactory
+from tock_genai_core.services.langchain.factory.embedding import BloomzFactory, AzureOpenAIEMFactory, VLLMEMFactory
 
 
 def get_em_factory(settings: BaseEMSetting) -> EMFactory:
@@ -19,7 +19,7 @@ def get_em_factory(settings: BaseEMSetting) -> EMFactory:
     """
     if settings.provider == EMProvider.BloomZ:
         return BloomzFactory(settings=settings)
-    elif settings.provider == EMProvider.OpenAI:
-        return OpenAIEMFactory(settings=settings)
+    elif settings.provider == EMProvider.AzureOpenAI:
+        return AzureOpenAIEMFactory(settings=settings)
     elif settings.provider == EMProvider.Vllm:
         return VLLMEMFactory(settings=settings)
