@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+"""Initialisation de module(s)."""
+
 from .provider import EMProvider
 from .setting import BaseEMSetting
 from .types import EMSetting

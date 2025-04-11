@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+"""Initialisation de module(s)."""
+
 from .provider import VectorDBProvider
 from .setting import BaseVectorDBSetting
 from .types import DBSetting

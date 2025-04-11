@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+"""Initialisation de module(s)."""
+
 from .provider import LLMProvider
 from .setting import BaseLLMSetting
 from .types import LLMSetting

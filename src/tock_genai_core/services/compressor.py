@@ -3,8 +3,8 @@ from urllib.parse import urljoin
 from typing import Sequence, Optional
 
 import requests
-from langchain.callbacks.manager import Callbacks
 from langchain_core.documents import Document
+from langchain.callbacks.manager import Callbacks
 from langchain.retrievers.document_compressors.base import BaseDocumentCompressor
 
 

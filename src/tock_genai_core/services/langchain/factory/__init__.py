@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+"""Initialisation de module(s)."""
+
 from .compressor_factory import get_compressor_factory
 from .db_factory import get_vector_db_factory
 from .em_factory import get_em_factory
