@@ -39,3 +39,6 @@ pytest-httpx = "^0.35.0"
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.repositories.pypi]
+url = "https://upload.pypi.org/legacy/"
