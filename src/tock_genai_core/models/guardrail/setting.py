@@ -23,10 +23,10 @@ class BaseGuardrailSetting(BaseModel):
     """
     Base configuration settings for guardrail models. This class defines the common settings used for
     configuring guardrail models from different providers.
-    
+
     Attributes
     ----------
-    
+
     provider: GuardrailProvider
         The guardrail provider
     api_base: str
@@ -34,7 +34,7 @@ class BaseGuardrailSetting(BaseModel):
     max_score: Optional[float]
         The maximum acceptable toxicity score (default: 0.3)
     api_key: Optional[SecretKey]
-        The API key used to authenticate requests to the provider API (default: None)    
+        The API key used to authenticate requests to the provider API (default: None)
     """
 
     provider: GuardrailProvider = Field(description="The guardrail provider.")

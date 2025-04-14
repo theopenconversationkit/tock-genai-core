@@ -21,9 +21,9 @@ from tock_genai_core.models.embedding.setting import BaseEMSetting
 
 class AzureOpenAIEMSetting(BaseEMSetting):
     """
-    Configuration settings for the AzureOpenAI embedding model.  
+    Configuration settings for the AzureOpenAI embedding model.
     This class defines the configuration required for using the AzureOpenAI embedding model.
-    
+
     Attributes
     ----------
     provider: Literal[EMProvider.AzureOpenAI]

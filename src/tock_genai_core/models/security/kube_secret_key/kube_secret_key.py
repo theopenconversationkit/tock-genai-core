@@ -21,12 +21,12 @@ from tock_genai_core.models.security.secret_key_type import SecretKeyType
 
 class KubernetesSecretKey(BaseSecretKey):
     """
-    A class for Kubernetes Secret Key.  
+    A class for Kubernetes Secret Key.
     Used to store the secret name managed in Kubernetes Secrets Manager.
-    
+
     Attributes
     ----------
-    
+
     type: Literal[SecretKeyType.KUBERNETES_SECRET]
         The Secret Key type (default: SecretKeyType.KUBERNETES_SECRET )
     secret_name: str

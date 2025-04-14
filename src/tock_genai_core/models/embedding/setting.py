@@ -24,7 +24,7 @@ class BaseEMSetting(BaseModel):
     """
     Base configuration settings for embedding models. This class defines the common settings used for
     configuring embedding models from different providers.
-    
+
     Attributes
     ----------
 

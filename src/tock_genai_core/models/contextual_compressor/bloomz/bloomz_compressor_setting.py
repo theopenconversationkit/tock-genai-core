@@ -23,9 +23,9 @@ from tock_genai_core.models.contextual_compressor.setting import BaseCompressorS
 
 class BloomZCompressorSetting(BaseCompressorSetting):
     """
-    Configuration settings for OpenSearch vector database.  
+    Configuration settings for OpenSearch vector database.
     This class defines the configuration for connecting to an OpenSearch vector database.
-    
+
     Attributes
     ----------
     provider: Literal[ContextualCompressorProvider.BloomZ]
@@ -35,7 +35,7 @@ class BloomZCompressorSetting(BaseCompressorSetting):
     max_documents: Optional[int]
         Maximum number of documents to return to avoid exceeding max tokens for text generation (default: 50)
     label: Optional[str]
-        Label to use for reranking (default: entailment)  
+        Label to use for reranking (default: entailment)
     """
 
     provider: Literal[ContextualCompressorProvider.BloomZ] = Field(

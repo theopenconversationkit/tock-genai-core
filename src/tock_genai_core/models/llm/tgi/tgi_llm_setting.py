@@ -21,12 +21,12 @@ from tock_genai_core.models.llm.setting import BaseLLMSetting
 
 class HuggingFaceTextGenInferenceLLMSetting(BaseLLMSetting):
     """
-    Configuration settings for Hugging Face Text Generation Inference LLM integration.  
+    Configuration settings for Hugging Face Text Generation Inference LLM integration.
     This class defines the configuration required to connect to the Hugging Face Text Generation Inference API.
 
     Attributes
     ----------
-    
+
     provider: Literal[LLMProvider.TGI]
         The Large Language Model provider (default: LLMProvider.TGI)
     repetition_penalty: float

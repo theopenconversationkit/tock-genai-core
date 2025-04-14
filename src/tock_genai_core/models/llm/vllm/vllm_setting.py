@@ -21,9 +21,9 @@ from tock_genai_core.models.llm.setting import BaseLLMSetting
 
 class VllmSetting(BaseLLMSetting):
     """
-    Configuration settings for the VLLM (Qwen) LLM integration.  
+    Configuration settings for the VLLM (Qwen) LLM integration.
     This class defines the configuration required to connect to the VLLM API.
-    
+
     Attributes
     ----------
     provider: Literal[LLMProvider.Vllm]

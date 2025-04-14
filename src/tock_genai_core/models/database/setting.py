@@ -22,7 +22,7 @@ class BaseVectorDBSetting(BaseModel):
     """
     Base class for settings related to vector database configurations. This class holds the basic configuration
     parameters for a vector database.
-    
+
     Attributes
     ----------
     index: Optional[str]

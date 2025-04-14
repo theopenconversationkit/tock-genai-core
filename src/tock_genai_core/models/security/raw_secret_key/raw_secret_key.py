@@ -21,12 +21,12 @@ from tock_genai_core.models.security.secret_key_type import SecretKeyType
 
 class RawSecretKey(BaseSecretKey):
     """
-    A class for Raw Secret Key.  
+    A class for Raw Secret Key.
     Used to store a secret in its raw form.
-    
+
     Attributes
     ----------
-    
+
     type: Literal[SecretKeyType.RAW]
         The Secret Key type (default: SecretKeyType.RAW )
     secret_name: str
