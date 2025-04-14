@@ -23,6 +23,19 @@ class BaseLLMSetting(BaseModel):
     """
     Base configuration settings for LLM API. This class defines the common settings used for
     configuring LLM API from different providers.
+    
+    Attributes
+    ----------
+    
+    provider: LLMProvider
+        The Large Language Model provider
+    model: Optional[str]
+        Model name (default: None)
+    api_key: Optional[SecretKey]
+        The API key used to authenticate requests to the provider API (default: None)
+    temperature: float
+        The temperature that controls the randomness of the text generated (default: 0.5)
+    
     """
 
     provider: LLMProvider = Field(description="The Large Language Model provider.")

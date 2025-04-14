@@ -1,7 +1,5 @@
 # tock-genai-core
-Generative AI main and core components : models, factories, associated error management used in tock python Gen AI Components .
-
-
+Composants principaux d'IA générative : models, factories, gestion des erreurs utilisés dans les composants Gen AI python de tock.
 
 ## Architecture
 

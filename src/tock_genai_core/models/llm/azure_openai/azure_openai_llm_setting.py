@@ -21,8 +21,20 @@ from tock_genai_core.models.llm.setting import BaseLLMSetting
 
 class AzureOpenAILLMSetting(BaseLLMSetting):
     """
-    Configuration settings for AzureOpenAI LLM integration.
-    This class defines the configuration required to connect to the AzureOpenAI API
+    Configuration settings for AzureOpenAI LLM integration.  
+    This class defines the configuration required to connect to the AzureOpenAI API.
+    
+    Attributes
+    ----------
+    
+    provider: Literal[LLMProvider.AzureOpenAI]
+        The Large Language Model provider (default: LLMProvider.AzureOpenAI)
+    api_base: str
+        Base endpoint of AzureOpenAI API
+    api_version: str
+        AzureOpenAI API version
+    deployment: str
+        Deployment name
     """
 
     provider: Literal[LLMProvider.AzureOpenAI] = Field(

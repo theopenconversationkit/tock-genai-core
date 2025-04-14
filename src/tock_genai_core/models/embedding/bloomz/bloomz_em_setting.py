@@ -21,8 +21,14 @@ from tock_genai_core.models.embedding.setting import BaseEMSetting
 
 class BloomZEMSetting(BaseEMSetting):
     """
-    Configuration settings for the BloomZ embedding model.
+    Configuration settings for the BloomZ embedding model.  
     This class defines the configuration required for using the BloomZ embedding model.
+    
+    Attributes
+    ----------
+    
+    provider: Literal[EMProvider.BloomZ]
+        The Embedding Model provider (default: EMProvider.BloomZ)
     """
 
     provider: Literal[EMProvider.BloomZ] = Field(description="The Embedding Model provider.", default=EMProvider.BloomZ)

@@ -24,6 +24,22 @@ class BaseEMSetting(BaseModel):
     """
     Base configuration settings for embedding models. This class defines the common settings used for
     configuring embedding models from different providers.
+    
+    Attributes
+    ----------
+
+    provider: EMProvider
+        The Embedding Model provider
+    model: Optional[str]
+        Model name (default: None)
+    api_key: Optional[SecretKey]
+        The API key used to authenticate requests to the provider API (default: None)
+    api_base: str
+        The base url of the provider API
+    pooling: Optional[str]
+        Pooling method (default: None)
+    space_type: Optional[str]
+        The space type used to search vector (eg. `l2` for Bloomz, `cosin` for Ada) (default: l2)
     """
 
     provider: EMProvider = Field(description="The Embedding Model provider.")
@@ -36,6 +52,6 @@ class BaseEMSetting(BaseModel):
     api_base: str = Field(description="The base url of the provider API.")
     pooling: Optional[str] = Field(description="Pooling method.", default=None, examples=["first", "mean", "last"])
     space_type: Optional[str] = Field(
-        description="The space type used to search vector (eg. `l2` for Bloomz, `cosin` for Ada",
+        description="The space type used to search vector (eg. `l2` for Bloomz, `cosin` for Ada)",
         default="l2",
     )

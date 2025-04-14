@@ -21,8 +21,14 @@ from tock_genai_core.models.guardrail.setting import BaseGuardrailSetting
 
 class BloomZGuardrailSetting(BaseGuardrailSetting):
     """
-    Configuration settings for the BloomZ guardrail model.
+    Configuration settings for the BloomZ guardrail model.  
     This class defines the configuration required for using the BloomZ guardrail model.
+    
+    Attributes
+    ----------
+    
+    provider: Literal[GuardrailProvider.BloomZ]
+        The guardrail model provider (default: GuardrailProvider.BloomZ)
     """
 
     provider: Literal[GuardrailProvider.BloomZ] = Field(

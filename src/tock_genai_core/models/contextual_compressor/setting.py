@@ -24,10 +24,17 @@ from tock_genai_core.models.security.kube_secret_key import KubernetesSecretKey
 
 class BaseCompressorSetting(BaseModel):
     """
-    Base class for compressor settings.
-
-    This class serves as a base for defining configuration settings for different contextual
-    compressor providers.
+    Base class for compressor settings.  
+    This class serves as a base for defining configuration settings for different contextual compressor providers.
+    
+    Attributes
+    ----------
+    provider: ContextualCompressorProvider
+        The contextual compressor provider
+    endpoint: str
+        Scoring model endpoint
+    api_key: Optional[SecretKey]
+        The API key used to authenticate requests to the provider API   
     """
 
     provider: ContextualCompressorProvider = Field(description="The contextual compressor provider.")

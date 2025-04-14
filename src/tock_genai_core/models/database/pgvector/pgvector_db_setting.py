@@ -21,8 +21,23 @@ from tock_genai_core.models.security.security_type import SecretKey
 
 class PGVectorSetting(BaseVectorDBSetting):
     """
-    Configuration settings for PGVector vector database.
+    Configuration settings for PGVector vector database.  
     This class defines the configuration for connecting to a PGVector database.
+    
+    Attributes
+    ----------
+    provider: Literal[VectorDBProvider.PGVector]
+        The vector store used (default: VectorDBProvider.PGVector)
+    username: SecretKey
+        Database username (default: None)
+    password: SecretKey
+        Database password (default: None)
+    db_name: str
+        Database name (default: None)
+    sslmode: Optional[str]
+        The SSL mode used in the connection with the database  (default: require)
+    namespace: str
+        Name of the application in use
     """
 
     provider: Literal[VectorDBProvider.PGVector] = Field(

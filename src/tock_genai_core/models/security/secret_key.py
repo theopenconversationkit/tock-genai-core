@@ -16,6 +16,14 @@ from tock_genai_core.models.security.secret_key_type import SecretKeyType
 
 
 class BaseSecretKey(BaseModel):
-    """A base class for Secret Key."""
+    """
+    A base class for Secret Key.
+    
+    Attributes
+    ----------
+    
+    type: SecretKeyType
+        The Secret Key type (default: [SecretKeyType.AWS_SECRETS_MANAGER])    
+    """
 
     type: SecretKeyType = Field(description="The Secret Key type.", examples=[SecretKeyType.AWS_SECRETS_MANAGER])

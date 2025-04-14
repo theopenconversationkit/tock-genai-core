@@ -21,8 +21,23 @@ from tock_genai_core.models.security.raw_secret_key import RawSecretKey
 
 class LangfuseSetting(BaseModel):
     """
-    Configuration settings for Langfuse integration.
+    Configuration settings for Langfuse integration.  
     This class defines the configuration required to connect to Langfuse.
+    
+    Attributes
+    ----------
+    host: Optional[str]
+        Langfuse host
+    public_key: Optional[SecretKey]
+        Langfuse public key used for authentication (default: None)
+    secret_key: Optional[SecretKey]
+        Langfuse secret key used for authentication (default: None)
+    app_name: Optional[str]
+        Metadata - Application name (default: None)
+    user_id: Optional[str]
+        ID of the user making the request (default: None)
+    session_id: Optional[str]
+        ID of the conversation session (default: None)
     """
 
     host: Optional[str] = Field(description="Langfuse host.")

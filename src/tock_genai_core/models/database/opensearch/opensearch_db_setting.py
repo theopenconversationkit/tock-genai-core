@@ -22,8 +22,21 @@ from tock_genai_core.models.security.security_type import SecretKey
 
 class OpenSearchSetting(BaseVectorDBSetting):
     """
-    Configuration settings for OpenSearch vector database.
+    Configuration settings for OpenSearch vector database.  
     This class defines the configuration for connecting to an OpenSearch vector database.
+    
+    Attributes
+    ----------
+    provider: Literal[VectorDBProvider.OpenSearch]
+        The vector store used (default: VectorDBProvider.OpenSearch)
+    username: SecretKey
+        Database username (default: None)
+    password: SecretKey
+        Database password (default: None)
+    use_ssl: bool
+        Use an SSL connection or not
+    verify_certs: bool
+        Verify certificates authenticity or not    
     """
 
     provider: Literal[VectorDBProvider.OpenSearch] = Field(

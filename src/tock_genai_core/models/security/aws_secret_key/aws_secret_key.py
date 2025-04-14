@@ -21,8 +21,16 @@ from tock_genai_core.models.security.secret_key_type import SecretKeyType
 
 class AwsSecretKey(BaseSecretKey):
     """
-    A class for AWS Secret Key.
+    A class for AWS Secret Key.  
     Used to store the secret name managed in AWS Secrets Manager.
+    
+    Attributes
+    ----------
+    
+    type: Literal[SecretKeyType.AWS_SECRETS_MANAGER]
+        The Secret Key type (default: SecretKeyType.AWS_SECRETS_MANAGER )
+    secret_name: str
+        The secret name managed in AWS Secrets Manager
     """
 
     type: Literal[SecretKeyType.AWS_SECRETS_MANAGER] = Field(

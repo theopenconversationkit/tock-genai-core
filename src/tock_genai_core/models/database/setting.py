@@ -22,6 +22,15 @@ class BaseVectorDBSetting(BaseModel):
     """
     Base class for settings related to vector database configurations. This class holds the basic configuration
     parameters for a vector database.
+    
+    Attributes
+    ----------
+    index: Optional[str]
+        Index name (default: None)
+    provider: VectorDBProvider
+        The vector store used
+    db_url: str
+        The URL of the database
     """
 
     index: Optional[str] = Field(description="Index name", default=None)
