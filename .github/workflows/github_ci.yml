@@ -1,0 +1,95 @@
+name: CI/CD with Poetry
+
+on:
+  push:
+    branches: 
+      - "*"
+    tags:
+      - 'v*.*.*'  # CD déclenchée sur push taggé
+  pull_request:
+    branches: [ "develop", "main" ]
+  
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Run Tests & Linters
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      - name: Configure Poetry (no virtualenv)
+        run: poetry config virtualenvs.create false
+
+      - name: Install dependencies
+        run: poetry install
+
+      - name: Run Black
+        run: poetry run black --check src/tock_genai_core tests --line-length=120
+
+      - name: Run Flake8
+        run: poetry run flake8 --ignore=E101,E111,E114,E115,E116,E117,E12,E13,E2,E3,E401,E5,E70,W1,W2,W3,W5 --per-file-ignores="__init__.py:F401" --max-line-length=120 src/tock_genai_core
+
+      - name: Run Pylint
+        run: |
+          find . -name "*.py" | xargs poetry run pylint --max-line-length=120 --exit-zero
+
+      - name: Run Tests
+        run: poetry run pytest
+
+  deploy:
+    name: Publish to PyPI
+    if: startsWith(github.ref, 'refs/tags/')
+    needs: build
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      - name: Configure Poetry (no virtualenv)
+        run: poetry config virtualenvs.create false
+
+      - name: Install dependencies
+        run: poetry install --no-root
+
+      - name: Build the package
+        run: poetry build
+
+      - name: Configurer PyPI
+        run: poetry config repositories.pypi https://upload.pypi.org/legacy/
+
+      - name: Publish to PyPI
+        run: poetry publish --no-interaction --username __token__ --password ${{ secrets.PYPI_API_TOKEN }}
+
