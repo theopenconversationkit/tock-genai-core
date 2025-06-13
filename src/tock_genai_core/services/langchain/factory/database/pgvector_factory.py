@@ -35,6 +35,7 @@ class PGVectorFactory(VectorDBFactory):
             use_jsonb=True,
             connection=self._get_connection_string(),
             embeddings=get_em_factory(settings=self.em_settings).get_model(),
+            collection_metadata={"namespace": self.db_settings.namespace},
         )
 
     def _get_connection_string(self) -> str:
