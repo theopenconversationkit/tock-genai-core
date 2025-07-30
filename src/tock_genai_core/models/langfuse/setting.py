@@ -11,7 +11,7 @@ Authors:
     * Luigi Bokalli: luigi.bokalli@partnre.com
     * Noé Chabanon: noe.chabanon@partnre.com
 """
-from typing import Optional
+from typing import Optional, Dict, Any
 
 from pydantic import BaseModel, Field
 
@@ -38,6 +38,8 @@ class LangfuseSetting(BaseModel):
         ID of the user making the request (default: None)
     session_id: Optional[str]
         ID of the conversation session (default: None)
+    metadata: Optional[Dict[str, Any]]
+        Associated metadata
     """
 
     host: Optional[str] = Field(description="Langfuse host.")
@@ -54,3 +56,4 @@ class LangfuseSetting(BaseModel):
     app_name: Optional[str] = Field(description="Metadata - Application name.", default=None)
     user_id: Optional[str] = Field(description="ID of the user making the request.", default=None)
     session_id: Optional[str] = Field(description="ID of the conversation session.", default=None)
+    metadata: Optional[Dict[str, Any]] = Field(description="Associated metadata", default=None)
