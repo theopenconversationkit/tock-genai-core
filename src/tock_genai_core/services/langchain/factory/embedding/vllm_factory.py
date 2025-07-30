@@ -12,6 +12,6 @@ class VLLMEMFactory(EMFactory):
     def get_model(self) -> Embeddings:
         return AzureOpenAIEmbeddings(
             model=self.settings.model,
-            openai_api_base=self.settings.api_base,
+            azure_endpoint=self.settings.api_base,
             openai_api_key=fetch_secret_key_value(self.settings.api_key) if self.settings.api_key else "EMPTY",
         )

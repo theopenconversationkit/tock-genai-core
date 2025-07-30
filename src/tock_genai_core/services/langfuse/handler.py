@@ -1,5 +1,5 @@
 import logging
-from typing import Union
+from typing import Union, Dict, Any
 
 from langfuse.callback import CallbackHandler
 
@@ -32,6 +32,8 @@ class LangfuseHandler:
         ID of the user making the request.
     session_id : str
         ID of the conversation session.
+    metadata : Dict[str, Any]
+        Associated metadata.
 
     Methods
     -------
@@ -43,12 +45,21 @@ class LangfuseHandler:
 
     config: Union[LangfuseSetting, None] = None
 
-    def __init__(self, public_key: SecretKey, secret_key: SecretKey, host: str, user_id: str, session_id: str):
+    def __init__(
+        self,
+        public_key: SecretKey,
+        secret_key: SecretKey,
+        host: str,
+        user_id: str,
+        session_id: str,
+        metadata: Dict[str, Any],
+    ):
         self.public_key = fetch_secret_key_value(public_key)
         self.secret_key = fetch_secret_key_value(secret_key)
         self.host = host
         self.user_id = user_id
         self.session_id = session_id
+        self.metadata = metadata
 
     def exists(self) -> bool:
         """
@@ -78,4 +89,5 @@ class LangfuseHandler:
             host=self.host,
             session_id=self.session_id,
             user_id=self.user_id,
+            metadata=self.metadata,
         )
