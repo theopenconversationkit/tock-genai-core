@@ -50,7 +50,6 @@ class LangfuseHandler:
         self.secret_key = fetch_secret_key_value(secret_key)
         self.host = host
 
-
     def exists(self) -> bool:
         """
         Checks whether the public API key is provided and valid.
