@@ -154,6 +154,7 @@ Le projet est structuré en trois composants principaux :
       app_name: Optional[str]
       user_id: Optional[str]
       session_id: Optional[str]
+      metadata: Optional[Dict[str, Any]]
   ```
 
 - **LLM**

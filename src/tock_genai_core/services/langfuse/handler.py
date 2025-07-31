@@ -1,7 +1,8 @@
 import logging
-from typing import Union, Dict, Any
+from typing import Union
 
-from langfuse.callback import CallbackHandler
+from langfuse.langchain import CallbackHandler
+from langfuse import Langfuse
 
 from tock_genai_core.models.security.security_type import SecretKey
 from tock_genai_core.models.langfuse.setting import LangfuseSetting
@@ -28,12 +29,6 @@ class LangfuseHandler:
         The secret API key used to authenticate with Langfuse.
     host : str
         The host URL of the Langfuse service.
-    user_id : str
-        ID of the user making the request.
-    session_id : str
-        ID of the conversation session.
-    metadata : Dict[str, Any]
-        Associated metadata.
 
     Methods
     -------
@@ -50,16 +45,11 @@ class LangfuseHandler:
         public_key: SecretKey,
         secret_key: SecretKey,
         host: str,
-        user_id: str,
-        session_id: str,
-        metadata: Dict[str, Any],
     ):
         self.public_key = fetch_secret_key_value(public_key)
         self.secret_key = fetch_secret_key_value(secret_key)
         self.host = host
-        self.user_id = user_id
-        self.session_id = session_id
-        self.metadata = metadata
+
 
     def exists(self) -> bool:
         """
@@ -83,11 +73,5 @@ class LangfuseHandler:
         CallbackHandler
             A configured `CallbackHandler` instance.
         """
-        return CallbackHandler(
-            public_key=self.public_key,
-            secret_key=self.secret_key,
-            host=self.host,
-            session_id=self.session_id,
-            user_id=self.user_id,
-            metadata=self.metadata,
-        )
+        Langfuse(public_key=self.public_key, secret_key=self.secret_key, host=self.host)
+        return CallbackHandler()
