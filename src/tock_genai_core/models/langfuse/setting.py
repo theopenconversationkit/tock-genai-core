@@ -32,14 +32,11 @@ class LangfuseSetting(BaseModel):
         Langfuse public key used for authentication (default: None)
     secret_key: Optional[SecretKey]
         Langfuse secret key used for authentication (default: None)
-    app_name: Optional[str]
-        Metadata - Application name (default: None)
-    user_id: Optional[str]
-        ID of the user making the request (default: None)
-    session_id: Optional[str]
-        ID of the conversation session (default: None)
     metadata: Optional[Dict[str, Any]]
-        Associated metadata
+        Optional metadata containing Langfuse-specific fields such as:
+            - "langfuse_session_id": str — ID of the session to associate with the trace.
+            - "langfuse_user_id": str — ID of the user to associate with the trace.
+            - "langfuse_tags": list[str] — Tags to associate with the trace.
     """
 
     host: Optional[str] = Field(description="Langfuse host.")
@@ -53,7 +50,4 @@ class LangfuseSetting(BaseModel):
         default=None,
         examples=[RawSecretKey(type="Raw", value="your-secret-key")],
     )
-    app_name: Optional[str] = Field(description="Metadata - Application name.", default=None)
-    user_id: Optional[str] = Field(description="ID of the user making the request.", default=None)
-    session_id: Optional[str] = Field(description="ID of the conversation session.", default=None)
     metadata: Optional[Dict[str, Any]] = Field(description="Associated metadata", default=None)

@@ -151,9 +151,6 @@ Le projet est structuré en trois composants principaux :
       host: Optional[str]
       public_key: Optional[SecretKey]
       secret_key: Optional[SecretKey]
-      app_name: Optional[str]
-      user_id: Optional[str]
-      session_id: Optional[str]
       metadata: Optional[Dict[str, Any]]
   ```
 
