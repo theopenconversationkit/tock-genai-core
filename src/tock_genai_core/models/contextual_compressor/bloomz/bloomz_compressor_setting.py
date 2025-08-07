@@ -2,8 +2,9 @@
 """
 BloomZCompressorSetting
 
-Configuration settings for OpenSearch vector database.
-This class defines the configuration for connecting to an OpenSearch vector database.
+Configuration settings for the BloomZ contextual compressor.
+This class defines the parameters used to configure the BloomZ-based reranking compressor,
+which selects the most relevant documents based on a minimum entailment score.
 
 Authors:
     * Baptiste Le Goff: baptiste.le-goff@arkea.com
@@ -23,8 +24,10 @@ from tock_genai_core.models.contextual_compressor.setting import BaseCompressorS
 
 class BloomZCompressorSetting(BaseCompressorSetting):
     """
-    Configuration settings for OpenSearch vector database.
-    This class defines the configuration for connecting to an OpenSearch vector database.
+    Settings for configuring the BloomZ-based contextual compression.
+
+    This configuration is used to control how documents are filtered and reranked
+    using the BloomZ model, typically in retrieval-augmented generation (RAG) pipelines.
 
     Attributes
     ----------

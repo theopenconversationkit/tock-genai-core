@@ -37,7 +37,6 @@ Le projet est structuré en trois composants principaux :
     - Vllm = "Vllm"
 
 - **VectorDBProvider** (Database)
-    - OpenSearch = "OPENSEARCH"
     - PGVector = "PGVECTOR"
 
 - **ContextualCompressorProvider** (Contetual Compressor)
@@ -108,16 +107,7 @@ Le projet est structuré en trois composants principaux :
         provider: VectorDBProvider
         db_url: str
     ```
-  - Classes enfants
-    ```
-    OpenSearchSetting(BaseVectorDBSetting):
-        provider: Literal[VectorDBProvider.OpenSearch]
-        username: SecretKey
-        password: SecretKey
-        use_ssl: bool
-        verify_certs: bool
-    ```
-
+  - Classe enfant
     ```
     class PGVectorSetting(BaseVectorDBSetting):
         provider: Literal[VectorDBProvider.PGVector]
