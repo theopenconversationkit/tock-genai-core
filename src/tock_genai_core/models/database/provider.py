@@ -21,7 +21,6 @@ class VectorDBProvider(str, Enum):
     This class defines the available vector database providers.
     """
 
-    OpenSearch = "OPENSEARCH"
     PGVector = "PGVECTOR"
 
     @classmethod
