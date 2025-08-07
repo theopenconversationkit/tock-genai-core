@@ -19,6 +19,7 @@ pydantic-settings = "^2.7.1"
 text-generation = "^0.7.0"
 tiktoken = "^0.8.0"
 uvicorn = "^0.34.0"
+psycopg-binary = "^3.2.9"
 
 [tool.poetry.group.dev.dependencies]
 pylint = "^3.3.6"
