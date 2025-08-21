@@ -38,9 +38,4 @@ class RawSecretKey(BaseSecretKey):
         examples=[SecretKeyType.RAW],
         default=SecretKeyType.RAW,
     )
-    secret: str = Field(
-        description="The secret value.",
-        examples=["145d-ff455g-e4r5gf"],
-        min_length=1,
-        alias="value"
-    )
+    secret: str = Field(description="The secret value.", examples=["145d-ff455g-e4r5gf"], min_length=1, alias="value")
