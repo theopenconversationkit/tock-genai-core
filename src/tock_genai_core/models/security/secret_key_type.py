@@ -20,3 +20,4 @@ class SecretKeyType(str, Enum):
     RAW = "Raw"
     AWS_SECRETS_MANAGER = "AwsSecretsManager"
     KUBERNETES_SECRET = "KubeSecret"
+    GCP_SECRETS_MANAGER = "GcpSecretManager"

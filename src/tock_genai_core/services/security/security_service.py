@@ -1,5 +1,6 @@
 from typing import Optional, Union, Dict
 
+from tock_genai_core.models.security.gcp_secret_key import GcpSecretKey
 from tock_genai_core.models.security.security_type import SecretKey
 from tock_genai_core.models.security.raw_secret_key import RawSecretKey
 from tock_genai_core.models.security.aws_secret_key import AwsSecretKey
@@ -51,8 +52,10 @@ def fetch_secret_key_value(secret_key: SecretKey) -> Optional[Union[str, Dict[st
         If the `AppNameSecretKey` cannot be found in the configuration.
     """
     if isinstance(secret_key, RawSecretKey):
-        return secret_key.value
+        return secret_key.secret
     elif isinstance(secret_key, AwsSecretKey):
         raise NotImplementedError()
     elif isinstance(secret_key, KubernetesSecretKey):
+        raise NotImplementedError()
+    elif isinstance(secret_key, GcpSecretKey):
         raise NotImplementedError()

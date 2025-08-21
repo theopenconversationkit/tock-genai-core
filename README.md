@@ -43,6 +43,15 @@ Le projet est structuré en trois composants principaux :
 - **ContextualCompressorProvider** (Contetual Compressor)
     - BloomZ = "BloomzRerank"
 
+## Secret Keys
+
+Types disponibles :  
+- **RawSecretKey** : stocke directement la valeur du secret.  
+  - Champ principal : `secret`  
+  - Alias rétro-compatible : `value` (toujours utilisable pour éviter les breaking changes).  
+- **AwsSecretKey** : référence un secret dans **AWS Secrets Manager**.  
+- **KubernetesSecretKey** : référence un secret dans **Kubernetes Secrets**.  
+- **GcpSecretKey** : référence un secret dans **GCP Secret Manager**.
 
 ## Settings
 
