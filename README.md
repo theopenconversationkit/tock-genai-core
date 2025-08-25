@@ -48,10 +48,18 @@ Le projet est structuré en trois composants principaux :
 Types disponibles :  
 - **RawSecretKey** : stocke directement la valeur du secret.  
   - Champ principal : `secret`  
-  - Alias rétro-compatible : `value` (toujours utilisable pour éviter les breaking changes).  
+  - Alias rétro-compatible : `value` (encore utilisable pour compatibilité, mais à éviter dans les nouvelles configurations).
 - **AwsSecretKey** : référence un secret dans **AWS Secrets Manager**.  
 - **KubernetesSecretKey** : référence un secret dans **Kubernetes Secrets**.  
 - **GcpSecretKey** : référence un secret dans **GCP Secret Manager**.
+
+### GCP Secret Manager
+
+Pour utiliser `GcpSecretKey`, un `project_id` GCP doit être disponible.  
+Il est résolu automatiquement de la façon suivante :
+
+1. Si la variable d’environnement `GCP_PROJECT_ID` est définie -> elle est utilisée directement.  
+2. Sinon, le `project_id` est automatiquement détecté à partir des credentials Google (`GOOGLE_APPLICATION_CREDENTIALS`).  
 
 ## Settings
 
