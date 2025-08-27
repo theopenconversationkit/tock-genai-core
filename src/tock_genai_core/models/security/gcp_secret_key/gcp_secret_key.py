@@ -5,11 +5,8 @@ GcpSecretKey
 A class for GCP Secret Key.
 Used to store the secret name managed in GCP Secrets Manager.
 
-Authors:
-    * Baptiste Le Goff: baptiste.le-goff@arkea.com
-    * Killian Mahé: killian.mahe@partnre.com
-    * Luigi Bokalli: luigi.bokalli@partnre.com
-    * Noé Chabanon: noe.chabanon@partnre.com
+Author:
+    * Louis-Marie Toudoire louis-marie.toudoire@partnre.com
 """
 from typing import Literal
 

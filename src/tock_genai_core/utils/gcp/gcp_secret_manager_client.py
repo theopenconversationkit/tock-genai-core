@@ -1,3 +1,14 @@
+# -*- coding: utf-8 -*-
+"""
+GCPSecretManagerClient
+
+Minimal GCP Secret Manager client.
+Used to fetch secrets from Google Cloud Secret Manager.
+
+Author:
+    * Louis-Marie Toudoire louis-marie.toudoire@partnre.com
+"""
+
 import json
 import logging
 from typing import Union, Optional
