@@ -8,7 +8,7 @@ from tock_genai_core.models.security.aws_secret_key import AwsSecretKey
 from tock_genai_core.models.security.kube_secret_key import KubernetesSecretKey
 from tock_genai_core.utils.aws.aws_secrets_manager_client import AWSSecretsManagerClient
 from tock_genai_core.utils.gcp.gcp_secret_manager_client import GCPSecretManagerClient
-from tock_genai_core.utils.kube.kube_secret_manager_client import KubernetesSecretsManagerClient
+from tock_genai_core.utils.kube.kube_secret_manager_client import KubeSecretManagerClient
 
 
 def get_nested_value(data_dict, keys_str):
@@ -59,7 +59,7 @@ def fetch_secret_key_value(secret_key: SecretKey) -> Optional[Union[str, Dict[st
     elif isinstance(secret_key, AwsSecretKey):
         return AWSSecretsManagerClient().get_secret(secret_key.secret_name)
     elif isinstance(secret_key, KubernetesSecretKey):
-        return KubernetesSecretsManagerClient().get_secret(secret_key.secret_name)
+        return KubeSecretManagerClient().get_secret(secret_key.secret_name)
     elif isinstance(secret_key, GcpSecretKey):
         project_id = os.getenv("GCP_PROJECT_ID")  # Will be None if not set
         return GCPSecretManagerClient(project_id=project_id).get_secret(secret_key.secret_name)
