@@ -12,7 +12,7 @@ Author:
 import base64
 import json
 import logging
-from typing import Union, Optional
+from typing import Union
 
 from kubernetes import client, config
 from kubernetes.client.exceptions import ApiException
