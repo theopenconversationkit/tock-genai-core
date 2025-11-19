@@ -11,7 +11,7 @@ Authors:
     * Luigi Bokalli: luigi.bokalli@partnre.com
     * Noé Chabanon: noe.chabanon@partnre.com
 """
-from typing import Literal
+from typing import Literal, Optional
 
 from pydantic import Field
 
@@ -44,7 +44,7 @@ class KubernetesSecretKey(BaseSecretKey):
         min_length=1,
     )
 
-    namespace: str | None = Field(
+    namespace: Optional[str] = Field(
         default=None,
         description=(
             "The Kubernetes namespace where the secret is stored. "
