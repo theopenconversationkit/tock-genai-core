@@ -59,7 +59,7 @@ def fetch_secret_key_value(secret_key: SecretKey) -> Optional[Union[str, Dict[st
     elif isinstance(secret_key, AwsSecretKey):
         return AWSSecretsManagerClient().get_secret(secret_key.secret_name)
     elif isinstance(secret_key, KubernetesSecretKey):
-        return KubeSecretManagerClient().get_secret(secret_key.secret_name)
+        return KubeSecretManagerClient().get_secret(secret_name=secret_key.secret_name, namespace=secret_key.namespace)
     elif isinstance(secret_key, GcpSecretKey):
         project_id = os.getenv("GCP_PROJECT_ID")  # Will be None if not set
         return GCPSecretManagerClient(project_id=project_id).get_secret(secret_key.secret_name)

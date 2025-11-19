@@ -43,3 +43,12 @@ class KubernetesSecretKey(BaseSecretKey):
         examples=["openaiapi_key"],
         min_length=1,
     )
+
+    namespace: str | None = Field(
+        default=None,
+        description=(
+            "The Kubernetes namespace where the secret is stored. "
+            "If not set, the KubeSecretManagerClient fallback namespace will be used."
+        ),
+        examples=["custom-namespace"],
+    )
