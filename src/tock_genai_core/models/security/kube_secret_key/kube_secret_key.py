@@ -11,7 +11,7 @@ Authors:
     * Luigi Bokalli: luigi.bokalli@partnre.com
     * Noé Chabanon: noe.chabanon@partnre.com
 """
-from typing import Literal
+from typing import Literal, Optional
 
 from pydantic import Field
 
@@ -42,4 +42,13 @@ class KubernetesSecretKey(BaseSecretKey):
         description="The secret name in Kubernetes.",
         examples=["openaiapi_key"],
         min_length=1,
+    )
+
+    namespace: Optional[str] = Field(
+        default=None,
+        description=(
+            "The Kubernetes namespace where the secret is stored. "
+            "If not set, the KubeSecretManagerClient fallback namespace will be used."
+        ),
+        examples=["custom-namespace"],
     )
