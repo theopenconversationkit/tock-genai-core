@@ -73,4 +73,4 @@ class LangfuseHandler:
             A configured `CallbackHandler` instance.
         """
         Langfuse(public_key=self.public_key, secret_key=self.secret_key, host=self.host)
-        return CallbackHandler()
+        return CallbackHandler(public_key=self.public_key)
