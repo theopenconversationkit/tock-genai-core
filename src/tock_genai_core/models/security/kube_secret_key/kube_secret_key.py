@@ -31,6 +31,10 @@ class KubernetesSecretKey(BaseSecretKey):
         The Secret Key type (default: SecretKeyType.KUBERNETES_SECRET )
     secret_name: str
         The secret name in Kubernetes
+    namespace: Optional[str]
+        The Kubernetes namespace where the secret is stored
+    secret_key: Optional[str]
+        The specific key to extract from the Kubernetes secret data
     """
 
     type: Literal[SecretKeyType.KUBERNETES_SECRET] = Field(
@@ -51,4 +55,12 @@ class KubernetesSecretKey(BaseSecretKey):
             "If not set, the KubeSecretManagerClient fallback namespace will be used."
         ),
         examples=["custom-namespace"],
+    )
+    secret_key: Optional[str] = Field(
+        default=None,
+        description=(
+            "The specific key to extract from the Kubernetes secret data. "
+            "If not set, the first key in the secret data will be used."
+        ),
+        examples=["api-key", "password"],
     )
