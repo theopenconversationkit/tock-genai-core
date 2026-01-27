@@ -77,12 +77,8 @@ class KubeSecretManagerClient:
         # Extract the appropriate key from secret data
         if secret_key:
             if secret_key not in secret.data:
-                logger.error(
-                    f"Specified secret key not found in Kubernetes secret '{secret_name}'."
-                )
-                raise ValueError(
-                    f"Specified secret key not found in Kubernetes secret '{secret_name}'."
-                )
+                logger.error(f"Specified secret key not found in Kubernetes secret '{secret_name}'.")
+                raise ValueError(f"Specified secret key not found in Kubernetes secret '{secret_name}'.")
             b64_value = secret.data[secret_key]
         else:
             # Fallback to first key (backward compatible behavior)
