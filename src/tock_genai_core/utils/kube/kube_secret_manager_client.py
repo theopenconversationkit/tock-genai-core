@@ -87,7 +87,7 @@ class KubeSecretManagerClient:
         else:
             # Fallback to first key (backward compatible behavior)
             key, b64_value = next(iter(secret.data.items()))
-            logger.debug(f"No secret_key specified, using first key '{key}' from secret '{secret_name}'")
+            logger.debug(f"No secret_key specified, using first available key from secret '{secret_name}'")
 
         decoded = base64.b64decode(b64_value).decode("utf-8")
 
