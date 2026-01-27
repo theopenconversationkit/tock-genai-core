@@ -99,10 +99,6 @@ class KubeSecretManagerClient:
 
         # Try JSON decode
         try:
-            parsed = json.loads(decoded)
-            # If it's a dict with a 'secret' field, extract it for convenience
-            if isinstance(parsed, dict) and "secret" in parsed and len(parsed) == 1:
-                return parsed["secret"]
-            return parsed
+            return json.loads(decoded)
         except json.JSONDecodeError:
             return decoded
