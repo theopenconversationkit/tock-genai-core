@@ -60,7 +60,27 @@ class LangfuseHandler:
             Returns True if the public key is not None, indicating that the handler is properly configured.
             Otherwise, returns False.
         """
-        return True if self.public_key is not None else False
+        return self.public_key is not None
+
+    def get_client(self):
+        """Get or create a cached Langfuse client instance.
+
+        This function returns a shared Langfuse client so that callers can reuse
+        the same instance instead of creating new clients for each request.
+
+        Returns
+        -------
+        LangfuseClient
+            The cached Langfuse client instance.
+
+        """
+        if not hasattr(self, "_client"):
+            self._client = Langfuse(
+                public_key=self.public_key,
+                secret_key=self.secret_key,
+                host=self.host,
+            )
+        return self._client
 
     def get_handler(self) -> CallbackHandler:
         """
