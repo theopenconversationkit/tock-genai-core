@@ -50,4 +50,5 @@ class LangfuseSetting(BaseModel):
         default=None,
         examples=[RawSecretKey(type="Raw", value="your-secret-key")],
     )
+    trace_id: Optional[str] = Field(description="The langfuse trace to use", default=None)
     metadata: Optional[Dict[str, Any]] = Field(description="Associated metadata", default={})
