@@ -154,9 +154,7 @@ def _map_distance_strategy(space_type: Optional[str]) -> DistanceStrategy:
         If `space_type` does not match any known strategy.
     """
     if space_type not in _DISTANCE_STRATEGY_MAP:
-        raise ValueError(
-            f"Unsupported space_type: {space_type!r}. Expected one of {sorted(_DISTANCE_STRATEGY_MAP)}."
-        )
+        raise ValueError(f"Unsupported space_type: {space_type!r}. Expected one of {sorted(_DISTANCE_STRATEGY_MAP)}.")
     return _DISTANCE_STRATEGY_MAP[space_type]
 
 
