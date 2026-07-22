@@ -2,7 +2,7 @@ from tock_genai_core.models.database import DBSetting
 from tock_genai_core.models.embedding import BaseEMSetting
 from tock_genai_core.models.database import VectorDBProvider
 from tock_genai_core.services.langchain.factory.factories import VectorDBFactory
-from tock_genai_core.services.langchain.factory.database import OpenSearchFactory, PGVectorFactory
+from tock_genai_core.services.langchain.factory.database import OpenSearchFactory, PGVectorFactory, PGVectorStoreFactory
 
 
 def get_vector_db_factory(db_settings: DBSetting, em_settings: BaseEMSetting) -> VectorDBFactory:
@@ -26,6 +26,11 @@ def get_vector_db_factory(db_settings: DBSetting, em_settings: BaseEMSetting) ->
         )
     if db_settings.provider == VectorDBProvider.PGVector:
         return PGVectorFactory(
+            db_settings=db_settings,
+            em_settings=em_settings,
+        )
+    if db_settings.provider == VectorDBProvider.PGVectorStore:
+        return PGVectorStoreFactory(
             db_settings=db_settings,
             em_settings=em_settings,
         )
