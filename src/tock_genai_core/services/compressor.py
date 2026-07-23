@@ -11,13 +11,12 @@ from tock_genai_core.models.contextual_compressor.provider import (
     ContextualCompressorProvider,
 )
 from langchain_core.prompts import ChatPromptTemplate
+from tock_genai_core.models.llm.types import LLMSetting
 
 logger = logging.getLogger(__name__)
 
 logging.basicConfig()
 logging.getLogger().setLevel(logging.INFO)
-
-from tock_genai_core.models.llm.types import LLMSetting
 
 
 class BloomzRerank(BaseDocumentCompressor):
