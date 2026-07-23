@@ -38,9 +38,7 @@ class BaseCompressorSetting(BaseModel):
         The API key used to authenticate requests to the provider API
     """
 
-    provider: ContextualCompressorProvider = Field(
-        description="The contextual compressor provider."
-    )
+    provider: ContextualCompressorProvider = Field(description="The contextual compressor provider.")
     endpoint: Optional[str] = Field(description="Scoring model endpoint.", default=None)
     api_key: Optional[SecretKey] = Field(
         description="The API key used to authenticate requests to the provider API.",
