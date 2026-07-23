@@ -30,4 +30,5 @@ class LLMCompressorFactory(CompressorFactory):
             provider_settings=self.settings.provider_settings,
             min_score=self.settings.min_score,
             max_documents=self.settings.max_documents,
+            prompt=self.settings.prompt,
         )

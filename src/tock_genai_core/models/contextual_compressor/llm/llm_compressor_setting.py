@@ -32,3 +32,18 @@ class LLMCompressorSetting(BaseCompressorSetting):
         description="Maximum number of documents to return to avoid exceeding max tokens for text generation.",
         default=50,
     )
+    prompt: str = Field(
+        description="Prompt",
+        default="""Rate the relevance of this document to the query : 
+
+                    Query: {query}
+
+                    Document: {document}
+
+                    Rate from 0-10 where:
+                    - 0: Completely irrelevant
+                    - 5: Partially relevant
+                    - 10: Highly relevant and answers the query
+
+                    ONLY return a number between 0 and 10 for the output.""",
+    )

@@ -89,6 +89,8 @@ class LLMRerank(BaseDocumentCompressor):
     min_score: float = 0.5
     """Maximum number of documents to returns"""
     max_documents: int = 50
+    """Prompt"""
+    prompt: str
 
     def compress_documents(
         self,
@@ -147,18 +149,11 @@ class LLMRerank(BaseDocumentCompressor):
         Returns:
             A prompt
         """
-        result = f"""Rate the relevance of this document to the query : 
+        result = self.prompt.format(
+            query=query,
+            document=document.page_content,
+        )
 
-                    Query: {query}
-
-                    Document: {document.page_content}
-
-                    Rate from 0-10 where:
-                    - 0: Completely irrelevant
-                    - 5: Partially relevant
-                    - 10: Highly relevant and answers the query
-
-                    ONLY return a number between 0 and 10 for the output."""
         return result
 
     def get_reranking_score(self, query, document, settings):
