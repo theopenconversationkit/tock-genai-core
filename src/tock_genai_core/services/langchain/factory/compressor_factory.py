@@ -27,3 +27,5 @@ def get_compressor_factory(settings: BaseCompressorSetting) -> CompressorFactory
         return BloomzCompressorFactory(settings=settings)
     elif settings.provider == ContextualCompressorProvider.LLM:
         return LLMCompressorFactory(settings=settings)
+    else:
+        raise ValueError(f"Unsupported compressor provider: {settings.provider}")
