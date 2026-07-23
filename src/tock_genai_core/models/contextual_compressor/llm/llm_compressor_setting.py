@@ -1,4 +1,4 @@
-from typing import Literal, Optional,Union
+from typing import Literal, Optional, Union
 
 from pydantic import Field
 
@@ -6,7 +6,7 @@ from tock_genai_core.models.contextual_compressor.provider import (
     ContextualCompressorProvider,
 )
 from tock_genai_core.models.contextual_compressor.setting import BaseCompressorSetting
-from  tock_genai_core.models.llm.types import LLMSetting
+from tock_genai_core.models.llm.types import LLMSetting
 
 
 class LLMCompressorSetting(BaseCompressorSetting):
@@ -25,15 +25,10 @@ class LLMCompressorSetting(BaseCompressorSetting):
         Maximum number of documents to return to avoid exceeding max tokens for text generation (default: 50)
     """
 
-    provider: Literal[ContextualCompressorProvider.LLM] = Field(
-        description="The contextual compressor provider."
-    )
-    provider_settings: LLMSetting = Field(
-        description="The settings of the compressor provider."
-    )
+    provider: Literal[ContextualCompressorProvider.LLM] = Field(description="The contextual compressor provider.")
+    provider_settings: LLMSetting = Field(description="The settings of the compressor provider.")
     min_score: float = Field(description="Minimum retailment score.")
     max_documents: Optional[int] = Field(
         description="Maximum number of documents to return to avoid exceeding max tokens for text generation.",
         default=50,
     )
-

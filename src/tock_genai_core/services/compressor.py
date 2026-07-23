@@ -61,33 +61,22 @@ class BloomzRerank(BaseDocumentCompressor):
 
         response = requests.post(
             urljoin(self.endpoint, "/score"),
-            json={
-                "contexts": [
-                    {"query": query, "context": document.page_content}
-                    for document in documents
-                ]
-            },
+            json={"contexts": [{"query": query, "context": document.page_content} for document in documents]},
             headers=headers,
         )
 
         if response.status_code != 200:
-            logger.error(
-                "%s %s - %s", response.status_code, response.reason, response.text
-            )
+            logger.error("%s %s - %s", response.status_code, response.reason, response.text)
             raise RuntimeError("The scoring server didn't respond has expected.")
 
         final_results = []
         for i, doc_results in enumerate(response.json()["response"]):
-            doc_entailment = list(
-                filter(lambda cls: cls["label"] == self.label, doc_results)
-            )[0]
+            doc_entailment = list(filter(lambda cls: cls["label"] == self.label, doc_results))[0]
             if doc_entailment["score"] >= self.min_score:
                 documents[i].metadata["retriever_score"] = doc_entailment["score"]
                 final_results.append(documents[i])
 
-        return sorted(
-            final_results, key=lambda d: d.metadata["retriever_score"], reverse=True
-        )[: self.max_documents]
+        return sorted(final_results, key=lambda d: d.metadata["retriever_score"], reverse=True)[: self.max_documents]
 
 
 class LLMRerank(BaseDocumentCompressor):
@@ -128,9 +117,7 @@ class LLMRerank(BaseDocumentCompressor):
         documents_score = []
         for document in documents:
             try:
-                score = self.get_reranking_score(
-                    query, document, settings=self.provider_settings
-                )
+                score = self.get_reranking_score(query, document, settings=self.provider_settings)
                 if score >= self.min_score:
                     document.metadata["retriever_score"] = score
                     documents_score.append(document)
@@ -139,9 +126,9 @@ class LLMRerank(BaseDocumentCompressor):
                 continue
 
         # sort the documents to keep a certain amount of documents (max_documents) with the maximum scores
-        result = sorted(
-            documents_score, key=lambda d: d.metadata["retriever_score"], reverse=True
-        )[: self.max_documents]
+        result = sorted(documents_score, key=lambda d: d.metadata["retriever_score"], reverse=True)[
+            : self.max_documents
+        ]
 
         # if no documents where found all document are return to make rage pipeline continue
         if not result:

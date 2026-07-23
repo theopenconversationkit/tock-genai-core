@@ -11,6 +11,7 @@ Authors:
     * Luigi Bokalli: luigi.bokalli@partnre.com
     * Noé Chabanon: noe.chabanon@partnre.com
 """
+
 from typing import Optional
 
 from pydantic import BaseModel, Field

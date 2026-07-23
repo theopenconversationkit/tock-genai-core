@@ -26,8 +26,8 @@ class LLMCompressorFactory(CompressorFactory):
         Returns a `LLMRerank` compressor instance configured with the provided settings.
         """
         return LLMRerank(
-            provider = self.settings.provider,
-            provider_settings= self.settings.provider_settings,
-            min_score = self.settings.min_score,
-            max_documents=self.settings.max_documents
+            provider=self.settings.provider,
+            provider_settings=self.settings.provider_settings,
+            min_score=self.settings.min_score,
+            max_documents=self.settings.max_documents,
         )
