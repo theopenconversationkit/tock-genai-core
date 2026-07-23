@@ -11,6 +11,7 @@ Authors:
     * Luigi Bokalli: luigi.bokalli@partnre.com
     * Noé Chabanon: noe.chabanon@partnre.com
 """
+
 from typing import Optional
 
 from pydantic import BaseModel, Field
@@ -37,8 +38,10 @@ class BaseCompressorSetting(BaseModel):
         The API key used to authenticate requests to the provider API
     """
 
-    provider: ContextualCompressorProvider = Field(description="The contextual compressor provider.")
-    endpoint: str = Field(description="Scoring model endpoint.")
+    provider: ContextualCompressorProvider = Field(
+        description="The contextual compressor provider."
+    )
+    endpoint: Optional[str] = Field(description="Scoring model endpoint.", default=None)
     api_key: Optional[SecretKey] = Field(
         description="The API key used to authenticate requests to the provider API.",
         default=None,
