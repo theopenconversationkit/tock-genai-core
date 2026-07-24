@@ -23,6 +23,7 @@ class VectorDBProvider(str, Enum):
 
     OpenSearch = "OPENSEARCH"
     PGVector = "PGVECTOR"
+    PGVectorStore = "PGVECTORSTORE"
 
     @classmethod
     def has_value(cls, value) -> bool:

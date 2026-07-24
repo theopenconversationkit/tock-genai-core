@@ -1,9 +1,14 @@
 import pytest
 
-from tock_genai_core.models.database import PGVectorSetting, OpenSearchSetting, VectorDBProvider
+from tock_genai_core.models.database import (
+    PGVectorSetting,
+    PGVectorStoreSetting,
+    OpenSearchSetting,
+    VectorDBProvider,
+)
 from tock_genai_core.models.embedding import BloomZEMSetting, EMProvider
 from tock_genai_core.services.langchain.factory import get_vector_db_factory
-from tock_genai_core.services.langchain.factory.database import OpenSearchFactory, PGVectorFactory
+from tock_genai_core.services.langchain.factory.database import OpenSearchFactory, PGVectorFactory, PGVectorStoreFactory
 
 
 @pytest.mark.parametrize(
@@ -18,6 +23,12 @@ from tock_genai_core.services.langchain.factory.database import OpenSearchFactor
         (
             PGVectorSetting(provider=VectorDBProvider.PGVector, db_url="http://localhost", namespace="namespace"),
             PGVectorFactory,
+        ),
+        (
+            PGVectorStoreSetting(
+                provider=VectorDBProvider.PGVectorStore, db_url="http://localhost", namespace="namespace"
+            ),
+            PGVectorStoreFactory,
         ),
     ],
 )
