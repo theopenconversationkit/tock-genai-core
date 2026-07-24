@@ -9,3 +9,4 @@ from .types import DBSetting
 
 from .opensearch.opensearch_db_setting import OpenSearchSetting
 from .pgvector.pgvector_db_setting import PGVectorSetting
+from .pgvector.pgvectorstore_db_setting import PGVectorStoreSetting, MetadataColumnSetting

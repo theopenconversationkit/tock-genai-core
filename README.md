@@ -39,6 +39,7 @@ Le projet est structuré en trois composants principaux :
 - **VectorDBProvider** (Database)
     - OpenSearch = "OPENSEARCH"
     - PGVector = "PGVECTOR"
+    - PGVectorStore = "PGVECTORSTORE"
 
 - **ContextualCompressorProvider** (Contetual Compressor)
     - BloomZ = "BloomzRerank"
@@ -145,6 +146,14 @@ Il est résolu automatiquement de la façon suivante :
         namespace: str
     ```
 
+    ```
+    class PGVectorStoreSetting(PGVectorSetting):
+        provider: Literal[VectorDBProvider.PGVectorStore]
+        common_metadata_columns: Optional[List[MetadataColumnSetting]]
+        fts_column: Optional[str]
+        fts_language: str
+    ```
+
 - **Guardrail**
 
   - Classe parente
@@ -207,6 +216,20 @@ Il est résolu automatiquement de la façon suivante :
         max_new_tokens: int
         additional_model_kwargs: Optional[Dict[str, Any]]
     ```
+
+## PGVector vs PGVectorStore
+
+Deux providers PostgreSQL coexistent, chacun avec sa propre factory (`PGVectorFactory`/`PGVectorStoreFactory`), tous les deux dispatchés par `get_vector_db_factory` selon `db_settings.provider`. Aucun des deux n'est déprécié : `PGVector` (v1) reste inchangé pour les applications consommatrices qui l'utilisent déjà, `PGVectorStore` (v2) est un provider additionnel, à choisir explicitement.
+
+- **`PGVector`** (`VectorDBProvider.PGVector`, classe `PGVectorSetting`) : basé sur `langchain_postgres.vectorstores.PGVector`. Toutes les collections sont stockées dans deux tables partagées (`langchain_pg_collection`/`langchain_pg_embedding`), avec un filtrage sur métadonnées qui accepte n'importe quelle clé JSON arbitraire.
+- **`PGVectorStore`** (`VectorDBProvider.PGVectorStore`, classe `PGVectorStoreSetting`) : basé sur `langchain_postgres.v2.PGVectorStore`/`PGEngine`. Chaque collection est stockée dans sa propre table physique, avec un jeu de colonnes de métadonnées déclarées (`common_metadata_columns`) plutôt qu'un filtrage JSON arbitraire.
+
+`PGVectorStoreSetting` hérite de `PGVectorSetting` (mêmes champs de connexion) et ajoute :
+- `common_metadata_columns: Optional[List[MetadataColumnSetting]]` : colonnes de métadonnées à créer sur la table physique de chaque nouvelle collection (`MetadataColumnSetting(name, data_type)`). tock-genai-core n'a aucune opinion sur le contenu de cette liste : c'est à l'application appelante de la définir selon son propre modèle de métadonnées (l'orchestrateur, par exemple, la dérive de son propre modèle `EmbeddingCMetadata`).
+- `fts_column: Optional[str]` : si renseigné, un index GIN de recherche plein-texte (`to_tsvector`) est créé sur cette colonne pour chaque nouvelle table de collection.
+- `fts_language: str` (défaut `"english"`) : la langue de configuration `to_tsvector`/`to_tsquery` utilisée pour l'index de `fts_column`.
+
+`PGVectorStoreFactory.get_vector_store()` gère lui-même, en interne, la résolution/provisioning de la table physique d'une collection (table déjà existante vs première utilisation), afin de ne pas exposer cette logique aux applications appelantes ni la dupliquer entre elles.
 
 ## Fonctionnement
 
