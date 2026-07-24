@@ -6,7 +6,12 @@ import requests
 from langchain_core.documents import Document
 from langchain.callbacks.manager import Callbacks
 from langchain.retrievers.document_compressors.base import BaseDocumentCompressor
-
+from tock_genai_core.services.langchain.factory.llm_factory import get_llm_factory
+from tock_genai_core.models.contextual_compressor.provider import (
+    ContextualCompressorProvider,
+)
+from langchain_core.prompts import ChatPromptTemplate
+from tock_genai_core.models.llm.types import LLMSetting
 
 logger = logging.getLogger(__name__)
 
@@ -71,3 +76,120 @@ class BloomzRerank(BaseDocumentCompressor):
                 final_results.append(documents[i])
 
         return sorted(final_results, key=lambda d: d.metadata["retriever_score"], reverse=True)[: self.max_documents]
+
+
+class LLMRerank(BaseDocumentCompressor):
+    """Document compressor that uses an llm to rerank documents"""
+
+    """Provider of the contextualCompressor."""
+    provider: ContextualCompressorProvider
+    """Provider settings of the llm"""
+    provider_settings: LLMSetting
+    """Minimum score to obtain to keep a document"""
+    min_score: float = 0.5
+    """Maximum number of documents to returns"""
+    max_documents: int = 50
+    """Prompt"""
+    prompt: str
+
+    def compress_documents(
+        self,
+        documents: Sequence[Document],
+        query: str,
+        callbacks: Optional[Callbacks] = None,
+    ) -> Sequence[Document]:
+        """
+        Compress documents.
+
+        Args:
+            documents: A sequence of documents to compress.
+            query: The query to use for compressing the documents.
+            callbacks: Callbacks to run during the compression process.
+
+        Returns:
+            A sequence of compressed documents.
+        """
+
+        # to avoid empty api call
+        if len(documents) == 0:
+            return []
+
+        # compute the score of each document relative to the query
+        documents_score = []
+        for document in documents:
+            try:
+                score = self.get_reranking_score(query, document, settings=self.provider_settings)
+                if score >= self.min_score:
+                    document.metadata["retriever_score"] = score
+                    documents_score.append(document)
+            except Exception as e:
+                logger.error("Error during scoring: %s", e)
+                continue
+
+        # sort the documents to keep a certain amount of documents (max_documents) with the maximum scores
+        result = sorted(documents_score, key=lambda d: d.metadata["retriever_score"], reverse=True)[
+            : self.max_documents
+        ]
+
+        # if no documents where found all document are return to make rage pipeline continue
+        if not result:
+            logger.warning("No relevant documents was found during reranking step")
+            return documents  # fallback
+
+        return result
+
+    def build_reranking_prompt(self, query, document):
+        """
+        Build the reranking prompt.
+
+        Args:
+            query: The query to use for compressing the documents.
+            document: Document to evaluate.
+
+        Returns:
+            A prompt
+        """
+        result = self.prompt.format(
+            query=query,
+            document=document.page_content,
+        )
+
+        return result
+
+    def get_reranking_score(self, query, document, settings):
+        """
+        Score the document
+
+        Args:
+            query: The query to use for compressing the documents.
+            document: Document to evaluate.
+            settings: Settings of the llm
+
+        Returns:
+            A score
+        """
+
+        try:
+
+            # llm model
+            llm = get_llm_factory(settings=settings).get_model()
+
+            # prompt
+            prompt_str = self.build_reranking_prompt(query, document)
+            prompt = ChatPromptTemplate.from_template(prompt_str)
+
+            # chain
+            chain = prompt | llm
+
+            # score
+            result = chain.invoke(
+                input={
+                    "query": query,
+                    "document": document.page_content,
+                }
+            )
+            score = float(result.content)
+
+            return score
+        except Exception as e:
+            raise RuntimeError(f"The scoring method didn't respond as expected : {e}")

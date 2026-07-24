@@ -11,6 +11,7 @@ Authors:
     * Luigi Bokalli: luigi.bokalli@partnre.com
     * Noé Chabanon: noe.chabanon@partnre.com
 """
+
 from enum import Enum, unique
 
 
@@ -22,6 +23,7 @@ class ContextualCompressorProvider(str, Enum):
     """
 
     BloomZ = "BloomzRerank"
+    LLM = "LLMRerank"
 
     @classmethod
     def has_value(cls, value) -> bool:

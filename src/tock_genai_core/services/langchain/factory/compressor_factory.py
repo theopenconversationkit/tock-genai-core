@@ -1,6 +1,7 @@
 from tock_genai_core.services.langchain.factory.factories import CompressorFactory
 from tock_genai_core.services.langchain.factory.contextual_compressor import (
     BloomzCompressorFactory,
+    LLMCompressorFactory,
 )
 from tock_genai_core.models.contextual_compressor import (
     BaseCompressorSetting,
@@ -24,3 +25,7 @@ def get_compressor_factory(settings: BaseCompressorSetting) -> CompressorFactory
     """
     if settings.provider == ContextualCompressorProvider.BloomZ:
         return BloomzCompressorFactory(settings=settings)
+    elif settings.provider == ContextualCompressorProvider.LLM:
+        return LLMCompressorFactory(settings=settings)
+    else:
+        raise ValueError(f"Unsupported compressor provider: {settings.provider}")

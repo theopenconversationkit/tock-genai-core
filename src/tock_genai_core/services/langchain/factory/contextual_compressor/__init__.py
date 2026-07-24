@@ -2,3 +2,4 @@
 """Initialisation de module(s)."""
 
 from .bloomz_compressor_factory import BloomzCompressorFactory
+from .llm_compressor_factory import LLMCompressorFactory
