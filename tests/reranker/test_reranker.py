@@ -79,3 +79,34 @@ def test_llm_reranker_should_succeed(mock_score, settings, expected_output, scor
 
     mock_score.assert_called()
     assert expected_output == len(result)
+
+
+@patch("tock_genai_core.services.compressor.get_llm_factory")
+def test_llm_reranker_should_handle_completion_style_llm_output(mock_get_llm_factory):
+    # Given: a completion-style LLM (e.g. Qwen via VllmSetting) returns a plain string,
+    # possibly with extra chatter around the score, instead of a chat message with `.content`.
+    mock_get_llm_factory.return_value = MagicMock(get_model=MagicMock(return_value=lambda _: " 8\n\nAssistant: 0"))
+
+    settings = LLMCompressorSetting(
+        provider=ContextualCompressorProvider.LLM,
+        provider_settings=AzureOpenAILLMSetting(
+            provider=LLMProvider.AzureOpenAI,
+            model="model",
+            temperature=0.5,
+            api_base="http://api.com",
+            api_version="1.0.0",
+            deployment="deployment",
+        ),
+        min_score=5,
+        max_documents=3,
+        prompt="Rate from 0 to 10.\n\nQuery: {query}\n\nDocument: {document}",
+    )
+    reranker = get_compressor_factory(settings).get_compressor()
+
+    # When
+    score = reranker.get_reranking_score(
+        "Who is Steve?", Document(page_content="Steve is my friend."), settings.provider_settings
+    )
+
+    # Then
+    assert score == 8.0
