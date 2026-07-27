@@ -1,3 +1,4 @@
+import re
 import logging
 from urllib.parse import urljoin
 from typing import Sequence, Optional
@@ -188,8 +189,18 @@ class LLMRerank(BaseDocumentCompressor):
                     "document": document.page_content,
                 }
             )
-            score = float(result.content)
+            # Chat models return a message object (`.content`), while completion-style LLMs
+            # (e.g. VllmSetting/Qwen, backed by a `BaseLLM` such as `VLLMOpenAI`) return a plain
+            # string directly - handle both instead of assuming a chat model.
+            text = result.content if hasattr(result, "content") else result
 
-            return score
+            # Completion-style models without a chat template (e.g. Qwen via raw /v1/completions)
+            # tend to ramble around the requested number instead of returning it alone, so extract
+            # the first number found rather than parsing the whole output as a float.
+            match = re.search(r"-?\d+(?:\.\d+)?", text)
+            if not match:
+                raise ValueError(f"No numeric score found in LLM output: {text!r}")
+
+            return float(match.group())
         except Exception as e:
             raise RuntimeError(f"The scoring method didn't respond as expected : {e}")
