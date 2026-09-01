@@ -78,7 +78,7 @@ class LangfuseHandler:
             self._client = Langfuse(
                 public_key=self.public_key,
                 secret_key=self.secret_key,
-                host=self.host,
+                base_url=self.host,
             )
         return self._client
 
@@ -92,5 +92,5 @@ class LangfuseHandler:
         CallbackHandler
             A configured `CallbackHandler` instance.
         """
-        Langfuse(public_key=self.public_key, secret_key=self.secret_key, host=self.host)
-        return CallbackHandler(public_key=self.public_key)
+        Langfuse(public_key=self.public_key, secret_key=self.secret_key, base_url=self.host)
+        return CallbackHandler()
