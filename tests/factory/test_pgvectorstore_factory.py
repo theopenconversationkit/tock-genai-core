@@ -286,3 +286,11 @@ def test_get_sync_engine_reuses_cached_engine_for_same_target(mocked_create_engi
 
     mocked_create_engine.assert_called_once()
     assert engine1 is engine2
+
+
+@patch("tock_genai_core.services.langchain.factory.database.pgvectorstore_factory.get_em_factory")
+def test_read_index_metadata_should_return_None(mocked_get_em_factory
+):
+    mocked_get_em_factory.return_value.get_model.return_value = MagicMock()
+    factory = PGVectorStoreFactory(db_settings=_db_settings(), em_settings=_em_settings())
+    assert factory.read_index_metadata() is None
