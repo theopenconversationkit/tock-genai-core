@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from typing import Optional
 
 from pydantic import BaseModel
 from langchain_core.output_parsers import BaseOutputParser
@@ -28,15 +29,21 @@ class VectorDBFactory(ABC, BaseModel):
 
     Methods
     -------
-    get_vector_store() -> VectorStore
+    get_vector_store(collection_metadata: Optional[dict] = None) -> VectorStore
         Abstract method to be implemented by subclasses to return an instance of a vector store.
+    read_index_metadata() -> Optional[dict]
+        Abstract method to be implemented by subclasses to return the metadata of the index (collection) if it exists.
     """
 
     db_settings: BaseVectorDBSetting
     em_settings: BaseEMSetting
 
     @abstractmethod
-    def get_vector_store(self) -> VectorStore:
+    def get_vector_store(self, collection_metadata: Optional[dict] = None) -> VectorStore:
+        pass
+
+    @abstractmethod
+    def read_index_metadata(self) -> Optional[dict]:
         pass
 
 

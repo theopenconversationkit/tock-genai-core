@@ -1,6 +1,6 @@
 from functools import lru_cache
 
-from sqlalchemy import create_engine, Engine
+from sqlalchemy import create_engine, Engine,text
 from langchain_postgres.vectorstores import PGVector
 
 from tock_genai_core.models.database import PGVectorSetting
@@ -8,6 +8,7 @@ from tock_genai_core.models.embedding import EMSetting
 from tock_genai_core.services.langchain.factory.factories import VectorDBFactory
 from tock_genai_core.services.langchain.factory.em_factory import get_em_factory
 from tock_genai_core.services.security.security_service import fetch_secret_key_value
+from typing import Optional
 
 
 @lru_cache(maxsize=32)
@@ -62,7 +63,7 @@ class PGVectorFactory(VectorDBFactory):
     db_settings: PGVectorSetting
     em_settings: EMSetting
 
-    def get_vector_store(self) -> PGVector:
+    def get_vector_store(self, collection_metadata: Optional[dict] = None) -> PGVector:
         """
         Returns a PGVector vector store instance configured with the provided settings, backed by a
         shared, pooled Engine instead of a fresh connection per call.
@@ -86,8 +87,41 @@ class PGVectorFactory(VectorDBFactory):
             use_jsonb=True,
             connection=engine,
             embeddings=get_em_factory(settings=self.em_settings).get_model(),
-            collection_metadata={"namespace": self.db_settings.namespace},
+            collection_metadata={"namespace": self.db_settings.namespace, **(collection_metadata or {})},
             # The "vector" extension is already created by the langchain_postgres Alembic migration;
             # skip PGVector's own per-instantiation CREATE EXTENSION check.
             create_extension=False,
         )
+
+    def read_index_metadata(self) -> Optional[dict]:
+        """
+        Returns the metadata of the index (collection) if it exists, or None if it does not exist.
+
+        Returns
+        -------
+        dict or None
+            A dictionary containing the metadata of the index (collection) if it exists, or None if it does not exist.
+            The metadata is read directly from the `langchain_pg_collection` table, bypassing PGVector to avoid creating the collection if it does not exist.
+        """
+
+        engine = _get_engine(
+            self.db_settings.db_url,
+            self.db_settings.db_name,
+            self.db_settings.sslmode,
+            fetch_secret_key_value(self.db_settings.username),
+            fetch_secret_key_value(self.db_settings.password),
+        )
+        
+        with engine.connect() as connection:
+            # Fresh database: LangChain tables are created on the first write. If the table does not exist, the collection does not exist.
+            if connection.execute(text("SELECT to_regclass('langchain_pg_collection')")).scalar() is None:
+                return None
+            collection = connection.execute(
+                text('SELECT cmetadata FROM langchain_pg_collection WHERE name = :name'),
+                {'name': self.db_settings.index},
+            ).first()
+        if collection is None:
+            return None
+        return collection.cmetadata or {}
+
+
