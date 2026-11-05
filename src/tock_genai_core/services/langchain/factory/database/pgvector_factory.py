@@ -1,6 +1,6 @@
 from functools import lru_cache
 
-from sqlalchemy import create_engine, Engine,text
+from sqlalchemy import create_engine, Engine, text
 from langchain_postgres.vectorstores import PGVector
 
 from tock_genai_core.models.database import PGVectorSetting
@@ -111,17 +111,15 @@ class PGVectorFactory(VectorDBFactory):
             fetch_secret_key_value(self.db_settings.username),
             fetch_secret_key_value(self.db_settings.password),
         )
-        
+
         with engine.connect() as connection:
             # Fresh database: LangChain tables are created on the first write. If the table does not exist, the collection does not exist.
             if connection.execute(text("SELECT to_regclass('langchain_pg_collection')")).scalar() is None:
                 return None
             collection = connection.execute(
-                text('SELECT cmetadata FROM langchain_pg_collection WHERE name = :name'),
-                {'name': self.db_settings.index},
+                text("SELECT cmetadata FROM langchain_pg_collection WHERE name = :name"),
+                {"name": self.db_settings.index},
             ).first()
         if collection is None:
             return None
         return collection.cmetadata or {}
-
-

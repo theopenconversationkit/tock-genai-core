@@ -99,57 +99,60 @@ def test_get_vector_store_creates_distinct_engine_for_different_target(
 
     assert mocked_create_engine.call_count == 2
 
+
 @patch("tock_genai_core.services.langchain.factory.database.pgvector_factory.create_engine")
-def test_read_index_returns_metadata_when_collection_exists(
-    mocked_create_engine
-):
+def test_read_index_returns_metadata_when_collection_exists(mocked_create_engine):
     mocked_create_engine.return_value = MagicMock()
     mock_engine = mocked_create_engine.return_value
     mock_connection = MagicMock()
     mock_engine.connect.return_value.__enter__.return_value = mock_connection
     mock_connection.execute.return_value.scalar.return_value = "langchain_pg_collection"
-    mock_connection.execute.return_value.first.return_value = MagicMock(cmetadata={"schema_version": 1,
-                "created_at": "2026-01-01T00:00:00Z",
-                "origin": "qallam",
-                "embedding_provider":"BloomZ"})
-    mocked_create_engine.return_value.connect.return_value.__enter__.return_value = mock_connection   
+    mock_connection.execute.return_value.first.return_value = MagicMock(
+        cmetadata={
+            "schema_version": 1,
+            "created_at": "2026-01-01T00:00:00Z",
+            "origin": "qallam",
+            "embedding_provider": "BloomZ",
+        }
+    )
+    mocked_create_engine.return_value.connect.return_value.__enter__.return_value = mock_connection
 
-    assert PGVectorFactory(db_settings=_db_settings(), em_settings=_em_settings()).read_index_metadata() == {"schema_version": 1,
-                "created_at": "2026-01-01T00:00:00Z",
-                "origin": "qallam",
-                "embedding_provider":"BloomZ"}
+    assert PGVectorFactory(db_settings=_db_settings(), em_settings=_em_settings()).read_index_metadata() == {
+        "schema_version": 1,
+        "created_at": "2026-01-01T00:00:00Z",
+        "origin": "qallam",
+        "embedding_provider": "BloomZ",
+    }
 
     assert mocked_create_engine.call_count == 1
     assert mock_connection.execute.call_count == 2
 
+
 @patch("tock_genai_core.services.langchain.factory.database.pgvector_factory.create_engine")
-def test_read_index_returns_none_when_collection_does_not_exist(
-    mocked_create_engine
-):
+def test_read_index_returns_none_when_collection_does_not_exist(mocked_create_engine):
     mocked_create_engine.return_value = MagicMock()
     mock_engine = mocked_create_engine.return_value
     mock_connection = MagicMock()
     mock_engine.connect.return_value.__enter__.return_value = mock_connection
     mock_connection.execute.return_value.scalar.return_value = "langchain_pg_collection"
     mock_connection.execute.return_value.first.return_value = None
-    mocked_create_engine.return_value.connect.return_value.__enter__.return_value = mock_connection   
+    mocked_create_engine.return_value.connect.return_value.__enter__.return_value = mock_connection
 
     assert PGVectorFactory(db_settings=_db_settings(), em_settings=_em_settings()).read_index_metadata() is None
 
     assert mocked_create_engine.call_count == 1
     assert mock_connection.execute.call_count == 2
 
+
 @patch("tock_genai_core.services.langchain.factory.database.pgvector_factory.create_engine")
-def test_read_index_returns_none_when_table_does_not_exist(
-    mocked_create_engine
-):
+def test_read_index_returns_none_when_table_does_not_exist(mocked_create_engine):
     mocked_create_engine.return_value = MagicMock()
     mock_engine = mocked_create_engine.return_value
     mock_connection = MagicMock()
     mock_engine.connect.return_value.__enter__.return_value = mock_connection
     mock_connection.execute.return_value.scalar.return_value = None
     mock_connection.execute.return_value.first.return_value = None
-    mocked_create_engine.return_value.connect.return_value.__enter__.return_value = mock_connection   
+    mocked_create_engine.return_value.connect.return_value.__enter__.return_value = mock_connection
 
     assert PGVectorFactory(db_settings=_db_settings(), em_settings=_em_settings()).read_index_metadata() is None
 

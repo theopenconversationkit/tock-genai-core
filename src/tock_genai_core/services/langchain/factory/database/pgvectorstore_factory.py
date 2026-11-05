@@ -328,7 +328,7 @@ class PGVectorStoreFactory(VectorDBFactory):
         """
         Returns None.
         """
-        return None 
+        return None
 
     def _get_declared_columns(self, session: Session) -> list[Column]:
         """

@@ -27,7 +27,7 @@ class OpenSearchFactory(VectorDBFactory):
     db_settings: OpenSearchSetting
     em_settings: EMSetting
 
-    def get_vector_store(self,collection_metadata=None) -> VectorStore:
+    def get_vector_store(self, collection_metadata=None) -> VectorStore:
         """
         Returns an OpenSearch vector store instance configured with the provided settings.
         """
@@ -49,5 +49,4 @@ class OpenSearchFactory(VectorDBFactory):
         """
         Returns None.
         """
-        return None 
-
+        return None
