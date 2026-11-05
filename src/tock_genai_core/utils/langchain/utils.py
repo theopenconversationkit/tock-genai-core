@@ -4,7 +4,7 @@ def assert_embedding_model_matches_existing_index(
     """
     Checks if the embedding model used to create an existing index matches the requested embedding model.
     Raises a ValueError if there is a mismatch.
-    Adding to an existing index: newly added chunks must use the model that was used to create the index; otherwise, s
+    Adding to an existing index: newly added chunks must use the model that was used to create the index; otherwise,
     they end up in an incompatible vector space and search results are silently corrupted.
     Unknown identity = non-blocking (no stamp or no requested model means there is nothing to compare).
     Embedding model names are normalized by trimming whitespace and removing the :latest suffix before comparison.
