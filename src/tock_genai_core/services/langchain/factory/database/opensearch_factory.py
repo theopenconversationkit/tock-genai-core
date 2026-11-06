@@ -6,6 +6,7 @@ from tock_genai_core.models.embedding import EMSetting
 from tock_genai_core.services.langchain.factory.factories import VectorDBFactory
 from tock_genai_core.services.langchain.factory.em_factory import get_em_factory
 from tock_genai_core.services.security.security_service import fetch_secret_key_value
+from typing import Optional
 
 
 class OpenSearchFactory(VectorDBFactory):
@@ -26,7 +27,7 @@ class OpenSearchFactory(VectorDBFactory):
     db_settings: OpenSearchSetting
     em_settings: EMSetting
 
-    def get_vector_store(self) -> VectorStore:
+    def get_vector_store(self, collection_metadata=None) -> VectorStore:
         """
         Returns an OpenSearch vector store instance configured with the provided settings.
         """
@@ -43,3 +44,9 @@ class OpenSearchFactory(VectorDBFactory):
             ssl_assert_hostname=False,
             ssl_show_warn=False,
         )
+
+    def read_index_metadata(self) -> Optional[dict]:
+        """
+        Returns None.
+        """
+        return None
