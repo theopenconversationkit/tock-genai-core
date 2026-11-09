@@ -324,6 +324,12 @@ class PGVectorStoreFactory(VectorDBFactory):
             distance_strategy=_map_distance_strategy(self.em_settings.space_type),
         )
 
+    def read_index_metadata(self) -> Optional[dict]:
+        """
+        Returns None.
+        """
+        return None
+
     def _get_declared_columns(self, session: Session) -> list[Column]:
         """
         Reads the custom metadata fields declared as filterable for this (index, namespace) pair.
